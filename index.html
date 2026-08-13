@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kestrel Sourcing — Vetted UK property deals, sourced for serious investors</title>
+<meta name="description" content="A hands-off, compliance-first property sourcing service for UK investors. Tell us your criteria; we find, appraise and present deals that meet your numbers." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3F1EA;
+    --paper-2:#ECE9DF;
+    --ink:#18221D;
+    --green:#1F3B32;
+    --green-2:#2C5347;
+    --brass:#A6803E;
+    --muted:#5C655E;
+    --line:rgba(24,34,29,0.14);
+    --line-soft:rgba(24,34,29,0.08);
+    --on-green:#EDEBE2;
+    --on-green-muted:#A9B6AE;
+    --sans:"Schibsted Grotesk",system-ui,-apple-system,sans-serif;
+    --serif:"Newsreader",Georgia,serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{margin:0;font-weight:700;letter-spacing:-0.02em;line-height:1.06;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .lede{font-family:var(--serif);font-size:1.18rem;line-height:1.55;color:#39423c;}
+  .eyebrow{
+    font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--brass);display:inline-flex;align-items:center;gap:9px;
+  }
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--brass);display:inline-block;}
+  .mono{font-family:var(--mono);}
+  :focus-visible{outline:2px solid var(--green-2);outline-offset:3px;border-radius:3px;}
+
+  /* ---- Nav ---- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(243,241,234,0.86);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav__inner{display:flex;align-items:center;justify-content:space-between;height:66px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-0.01em;font-size:1.12rem;}
+  .brand__mark{width:26px;height:26px;color:var(--green);}
+  .brand small{font-weight:500;color:var(--muted);font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;}
+  .nav__links{display:flex;align-items:center;gap:30px;}
+  .nav__links a{font-size:0.92rem;color:#3a433d;}
+  .nav__links a:hover{color:var(--green);}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:var(--sans);font-weight:600;font-size:0.95rem;
+    padding:13px 22px;border-radius:2px;border:1px solid transparent;cursor:pointer;
+    transition:transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn--primary{background:var(--green);color:var(--on-green);}
+  .btn--primary:hover{background:var(--green-2);transform:translateY(-1px);}
+  .btn--ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn--ghost:hover{border-color:var(--green);color:var(--green);}
+  .btn--lg{padding:16px 28px;font-size:1rem;}
+  .nav__cta{display:inline-flex;}
+  .nav__toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;}
+  .nav__toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.2s;}
+
+  /* ---- Hero ---- */
+  .hero{padding:78px 0 60px;}
+  .hero__grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:center;}
+  .hero h1{font-size:clamp(2.5rem,5.4vw,4rem);}
+  .hero h1 em{font-style:normal;color:var(--green);}
+  .hero__sub{margin-top:26px;max-width:30ch;}
+  .hero__cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+  .hero__note{margin-top:22px;font-size:0.85rem;color:var(--muted);display:flex;align-items:center;gap:10px;}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--brass);display:inline-block;}
+
+  /* ---- Fee ladder (signature) ---- */
+  .ladder{
+    background:var(--green);color:var(--on-green);border-radius:4px;
+    padding:30px 30px 26px;box-shadow:0 24px 60px -28px rgba(24,34,29,0.55);
+  }
+  .ladder__head{font-size:0.74rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--on-green-muted);margin-bottom:4px;}
+  .ladder__thesis{font-family:var(--serif);font-size:1.16rem;line-height:1.4;color:#fff;max-width:26ch;margin-bottom:22px;}
+  .rung{
+    display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:12px;
+    padding:14px 0;border-top:1px solid rgba(237,235,226,0.16);
+  }
+  .rung__roi{font-family:var(--mono);font-size:0.95rem;color:var(--on-green-muted);}
+  .rung__roi b{color:#fff;font-weight:600;}
+  .rung__fee{font-family:var(--mono);font-weight:600;font-size:1.7rem;color:#fff;letter-spacing:-0.02em;}
+  .rung--top .rung__fee{color:#E7C679;}
+  .ladder__foot{margin-top:18px;font-size:0.78rem;color:var(--on-green-muted);line-height:1.5;}
+
+  /* ---- Trust strip ---- */
+  .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;}
+  .trust__row{display:flex;flex-wrap:wrap;gap:14px 36px;align-items:center;justify-content:space-between;}
+  .trust__item{font-size:0.82rem;color:var(--muted);display:flex;align-items:center;gap:9px;}
+  .trust__item svg{width:16px;height:16px;color:var(--green-2);flex:none;}
+
+  /* ---- Section scaffold ---- */
+  .section{padding:88px 0;}
+  .section--alt{background:var(--paper-2);}
+  .section__head{max-width:60ch;margin-bottom:46px;}
+  .section__head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-top:14px;}
+  .section__head p{margin-top:16px;}
+
+  /* ---- Steps ---- */
+  .steps{display:grid;gap:0;border-top:1px solid var(--line);}
+  .step{
+    display:grid;grid-template-columns:88px 1fr 220px;gap:28px;align-items:start;
+    padding:30px 0;border-bottom:1px solid var(--line);
+  }
+  .step__num{font-family:var(--mono);font-size:1.05rem;color:var(--brass);font-weight:600;padding-top:3px;}
+  .step__body h3{font-size:1.3rem;}
+  .step__body p{margin-top:9px;color:#3c453f;max-width:46ch;}
+  .step__agent{
+    font-size:0.78rem;color:var(--muted);border-left:1px solid var(--line);padding-left:18px;
+  }
+  .step__agent b{display:block;color:var(--green);font-weight:600;font-size:0.82rem;margin-bottom:3px;letter-spacing:0.01em;}
+  .step__tag{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--brass);border:1px solid var(--line);border-radius:2px;padding:3px 7px;}
+
+  /* ---- Fees + calculator ---- */
+  .fees__grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .calc{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:28px;}
+  .calc__field{margin-bottom:18px;}
+  .calc__field label{display:block;font-size:0.8rem;font-weight:600;color:#3a433d;margin-bottom:7px;}
+  .calc__input{
+    width:100%;font-family:var(--mono);font-size:1rem;color:var(--ink);
+    background:#fff;border:1px solid var(--line);border-radius:2px;padding:12px 13px;
+  }
+  .calc__input:focus{outline:none;border-color:var(--green-2);}
+  .calc__out{
+    margin-top:8px;border-top:1px solid var(--line);padding-top:20px;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:14px;
+  }
+  .calc__out small{font-size:0.74rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;}
+  .calc__tier{font-family:var(--sans);font-weight:600;font-size:0.95rem;color:var(--green);}
+  .calc__fee{font-family:var(--mono);font-weight:600;font-size:2.1rem;color:var(--ink);letter-spacing:-0.02em;line-height:1;}
+  .fees__points{list-style:none;padding:0;margin:24px 0 0;}
+  .fees__points li{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line-soft);font-size:0.95rem;color:#3c453f;}
+  .fees__points li:first-child{border-top:0;}
+  .fees__points svg{width:18px;height:18px;color:var(--green-2);flex:none;margin-top:2px;}
+
+  /* ---- Audience ---- */
+  .who{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .who__card{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:26px;}
+  .who__card h3{font-size:1.1rem;margin-bottom:8px;}
+  .who__card p{font-size:0.92rem;color:#3c453f;}
+
+  /* ---- CTA / form ---- */
+  .cta{background:var(--green);color:var(--on-green);}
+  .cta__grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .cta h2{color:#fff;font-size:clamp(1.9rem,3.6vw,2.6rem);}
+  .cta__lede{font-family:var(--serif);color:var(--on-green-muted);margin-top:18px;font-size:1.1rem;line-height:1.55;max-width:34ch;}
+  .cta__steps{margin-top:26px;display:grid;gap:14px;}
+  .cta__step{display:flex;gap:13px;align-items:flex-start;font-size:0.92rem;color:var(--on-green);}
+  .cta__step span{font-family:var(--mono);color:#E7C679;font-size:0.85rem;padding-top:1px;}
+  .form{background:var(--paper);color:var(--ink);border-radius:4px;padding:30px;}
+  .form h3{font-size:1.15rem;margin-bottom:4px;}
+  .form p.small{font-size:0.84rem;color:var(--muted);margin-bottom:20px;}
+  .form__row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .form__field{margin-bottom:14px;}
+  .form__field label{display:block;font-size:0.78rem;font-weight:600;margin-bottom:6px;color:#3a433d;}
+  .form__field input,.form__field select{
+    width:100%;font-family:var(--sans);font-size:0.95rem;color:var(--ink);
+    background:#fff;border:1px solid var(--line);border-radius:2px;padding:11px 12px;
+  }
+  .form__field input:focus,.form__field select:focus{outline:none;border-color:var(--green-2);}
+  .form__msg{display:none;margin-top:14px;padding:13px 15px;border-radius:2px;background:#E4ECE5;border:1px solid #B9CDBF;color:var(--green);font-size:0.9rem;}
+  .form__msg.show{display:block;}
+  .form__note{margin-top:14px;font-size:0.74rem;color:var(--muted);line-height:1.5;}
+
+  /* ---- Footer ---- */
+  .footer{background:var(--ink);color:#C7CFC8;padding:56px 0 32px;font-size:0.86rem;}
+  .footer__top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .footer__brand{display:flex;align-items:center;gap:10px;font-weight:800;color:#fff;font-size:1.1rem;margin-bottom:14px;}
+  .footer__brand .brand__mark{color:#9FBFA9;}
+  .footer p{max-width:38ch;line-height:1.6;color:#9aa49c;}
+  .footer h4{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#7f8a82;margin:0 0 14px;font-weight:600;}
+  .footer ul{list-style:none;padding:0;margin:0;display:grid;gap:9px;}
+  .footer ul a:hover{color:#fff;}
+  .footer__compliance{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;}
+  .footer__compliance span{font-family:var(--mono);font-size:0.72rem;color:#7f8a82;}
+  .footer__legal{margin-top:26px;color:#6f7a72;font-size:0.76rem;line-height:1.6;max-width:90ch;}
+  .footer__bar{margin-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#6f7a72;font-size:0.78rem;}
+
+  /* ---- Reveal animation ---- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---- Responsive ---- */
+  @media (max-width:900px){
+    .hero__grid,.fees__grid,.cta__grid{grid-template-columns:1fr;gap:40px;}
+    .who{grid-template-columns:1fr;}
+    .step{grid-template-columns:54px 1fr;}
+    .step__agent{grid-column:1 / -1;border-left:0;border-top:1px solid var(--line-soft);padding-left:0;padding-top:14px;margin-top:4px;}
+    .footer__top{grid-template-columns:1fr;gap:28px;}
+    .nav__links{
+      display:none;position:absolute;top:66px;left:0;right:0;flex-direction:column;
+      align-items:flex-start;gap:0;background:var(--paper);border-bottom:1px solid var(--line);padding:8px 28px 20px;
+    }
+    .nav__links.open{display:flex;}
+    .nav__links a{padding:13px 0;width:100%;border-bottom:1px solid var(--line-soft);}
+    .nav__links .nav__cta{margin-top:14px;width:100%;}
+    .nav__toggle{display:block;}
+  }
+  @media (max-width:540px){
+    body{font-size:16px;}
+    .wrap{padding:0 20px;}
+    .section{padding:64px 0;}
+    .form__row{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="#top" aria-label="Kestrel Sourcing home">
+      <svg class="brand__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2 L20 8 L14 9 L21 16 L12 13 L3 16 L10 9 L4 8 Z" fill="currentColor"/>
+      </svg>
+      <span>Kestrel<br><small>Property Sourcing</small></span>
+    </a>
+    <nav class="nav__links" id="navlinks">
+      <a href="#how">How it works</a>
+      <a href="#fees">Our fee</a>
+      <a href="#who">Who we work with</a>
+      <a class="btn btn--primary nav__cta" href="#qualify">Qualify as an investor</a>
+    </nav>
+    <button class="nav__toggle" id="navtoggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="reveal">
+        <span class="eyebrow">Hands-off UK property sourcing</span>
+        <h1>We find the deal.<br>You keep your <em>time</em>.</h1>
+        <p class="hero__sub lede">Tell us your criteria once. We find, appraise and present property deals that actually meet your numbers — fully managed, compliance-first.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--lg" href="#qualify">Qualify as an investor</a>
+          <a class="btn btn--ghost btn--lg" href="#how">See how it works</a>
+        </div>
+        <p class="hero__note"><span class="dot"></span> No retainers. We earn a fee only when a deal completes.</p>
+      </div>
+
+      <!-- SIGNATURE: the fee ladder -->
+      <aside class="ladder reveal" aria-label="How our fee works">
+        <p class="ladder__head">Our fee, aligned to your return</p>
+        <p class="ladder__thesis">We only earn more when the deal works harder for you.</p>
+        <div class="rung rung--top">
+          <span class="rung__roi">ROI <b>30%+</b></span>
+          <span class="rung__fee">5%</span>
+        </div>
+        <div class="rung">
+          <span class="rung__roi">ROI <b>25–29.9%</b></span>
+          <span class="rung__fee">4%</span>
+        </div>
+        <div class="rung">
+          <span class="rung__roi">ROI <b>20–24.9%</b></span>
+          <span class="rung__fee">2%</span>
+        </div>
+        <p class="ladder__foot">Finder's fee as a percentage of purchase price, payable on completion. ROI defined and agreed in writing before we source.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="wrap trust__row">
+      <span class="trust__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 8 8 8 8s8-3 8-8V6z"/></svg> Redress scheme member</span>
+      <span class="trust__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 8 8 8 8s8-3 8-8V6z"/></svg> HMRC AML supervised</span>
+      <span class="trust__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 8 8 8 8s8-3 8-8V6z"/></svg> ICO registered</span>
+      <span class="trust__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg> Every deal independently appraised</span>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="eyebrow">The process</span>
+        <h2>Five steps from first hello to a completed deal</h2>
+        <p class="lede">A clear, repeatable journey. You'll always know exactly where your deal sits.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step__num">01</div>
+          <div class="step__body">
+            <h3>Connection</h3>
+            <p>We meet — at a networking event, or you find us here and sign up for the investor pack.</p>
+          </div>
+          <div class="step__agent"><b>What you do</b>Register your interest. Two minutes.</div>
+        </div>
+
+        <div class="step reveal">
+          <div class="step__num">02</div>
+          <div class="step__body">
+            <h3>Pre-qualification</h3>
+            <p>Two short forms — an investor qualification and a questionnaire — so we understand your position and exactly what you're looking for.</p>
+          </div>
+          <div class="step__agent"><b>What you do</b>Complete two forms.</div>
+        </div>
+
+        <div class="step reveal">
+          <div class="step__num">03</div>
+          <div class="step__body">
+            <h3>Discovery call</h3>
+            <p>A focused 15-minute call to confirm your criteria, your timeframe and your funding — and to make sure we're a good fit before either of us commits.</p>
+          </div>
+          <div class="step__agent"><b>What you do</b>Book a slot via Calendly.</div>
+        </div>
+
+        <div class="step reveal">
+          <div class="step__num">04</div>
+          <div class="step__body">
+            <h3>Sourcing &amp; appraisal</h3>
+            <p>We go to work — finding, appraising and assembling a compliant deal pack that meets your agreed criteria, then present it for your decision.</p>
+            <span class="step__tag">Sourcing methodology · detail to follow</span>
+          </div>
+          <div class="step__agent"><b>What we do</b>Source, appraise, present.</div>
+        </div>
+
+        <div class="step reveal">
+          <div class="step__num">05</div>
+          <div class="step__body">
+            <h3>Completion &amp; fee</h3>
+            <p>You proceed, the purchase completes, and our finder's fee applies — scaled to the deal's ROI, exactly as agreed up front.</p>
+          </div>
+          <div class="step__agent"><b>What you pay</b>A fee, only on completion.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEES -->
+  <section class="section section--alt" id="fees">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="eyebrow">Aligned incentives</span>
+        <h2>Our fee scales with your return</h2>
+        <p class="lede">Most sourcers charge the same flat fee whatever the deal does. We don't. A stronger deal for you is a stronger fee for us — so our interests point the same way.</p>
+      </div>
+
+      <div class="fees__grid">
+        <div class="reveal">
+          <div class="calc" aria-label="Estimate your fee">
+            <div class="calc__field">
+              <label for="price">Purchase price (£)</label>
+              <input class="calc__input" id="price" type="text" inputmode="numeric" value="250,000" />
+            </div>
+            <div class="calc__field">
+              <label for="roi">Projected ROI (%)</label>
+              <input class="calc__input" id="roi" type="number" min="0" max="200" value="32" />
+            </div>
+            <div class="calc__out">
+              <div>
+                <small>Fee tier</small>
+                <span class="calc__tier" id="tier">5% — ROI 30%+</span>
+              </div>
+              <div style="text-align:right">
+                <small>Estimated fee</small>
+                <span class="calc__fee" id="feeval">£12,500</span>
+              </div>
+            </div>
+          </div>
+          <p class="form__note" style="margin-top:14px">Illustrative only. ROI is defined and agreed in your sourcing agreement before any deal is presented.</p>
+        </div>
+
+        <div class="reveal">
+          <ul class="fees__points">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span><b>Payable on completion.</b> No retainers and no fee unless a deal you choose actually completes.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span><b>Defined up front.</b> Exactly how ROI is calculated is written into your agreement — no surprises.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span><b>Independently appraised.</b> Every figure that sets the fee is evidenced with comparables and conservative assumptions.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span><b>Transparent.</b> The full fee table is on the table before you commit a penny.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO -->
+  <section class="section" id="who">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="eyebrow">Fit</span>
+        <h2>Built for investors who'd rather not chase deals</h2>
+      </div>
+      <div class="who">
+        <div class="who__card reveal">
+          <h3>Time-poor professionals</h3>
+          <p>You have capital and intent, but not the hours to trawl portals, agents and auctions. We do that part.</p>
+        </div>
+        <div class="who__card reveal">
+          <h3>Portfolio builders</h3>
+          <p>You know your numbers and want a steady flow of deals that genuinely meet them — not whatever's nearest to market.</p>
+        </div>
+        <div class="who__card reveal">
+          <h3>Remote &amp; overseas investors</h3>
+          <p>Investing in the UK from a distance. We're your eyes, feet and appraisal on the ground.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / QUALIFY -->
+  <section class="section cta" id="qualify">
+    <div class="wrap cta__grid">
+      <div class="reveal">
+        <span class="eyebrow">Step one</span>
+        <h2>Qualify as an investor</h2>
+        <p class="cta__lede">Start with a few details. If it looks like a fit, we'll send the two qualification forms and a link to book your discovery call.</p>
+        <div class="cta__steps">
+          <div class="cta__step"><span>01</span> Tell us the basics below</div>
+          <div class="cta__step"><span>02</span> Complete the two short forms we send</div>
+          <div class="cta__step"><span>03</span> Book your 15-minute discovery call</div>
+        </div>
+      </div>
+
+      <form name="kestrel-interest" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="form reveal" id="leadform">
+        <input type="hidden" name="form-name" value="kestrel-interest" />
+        <p style="display:none"><label>Leave this empty: <input name="bot-field" /></label></p>
+        <h3>Register your interest</h3>
+        <p class="small">Takes about two minutes.</p>
+        <div class="form__row">
+          <div class="form__field">
+            <label for="fname">Full name</label>
+            <input id="fname" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="form__field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+        </div>
+        <div class="form__field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="form__row">
+          <div class="form__field">
+            <label for="budget">Investment budget</label>
+            <select id="budget" name="budget">
+              <option value="">Select…</option>
+              <option>Up to £150k</option>
+              <option>£150k – £300k</option>
+              <option>£300k – £500k</option>
+              <option>£500k+</option>
+            </select>
+          </div>
+          <div class="form__field">
+            <label for="exp">Investor status</label>
+            <select id="exp" name="investor-status">
+              <option value="">Select…</option>
+              <option>First investment</option>
+              <option>1–2 properties</option>
+              <option>Portfolio</option>
+            </select>
+          </div>
+        </div>
+        <label class="form__consent" style="display:flex;gap:.55rem;align-items:flex-start;font-size:.85rem;line-height:1.4;margin:.85rem 0">
+          <input type="checkbox" name="consent" required style="margin-top:.25rem;flex:none" />
+          <span>I agree to be contacted about property sourcing and to the <a href="/privacy.html">privacy notice</a>. Kestrel never shares my data.</span>
+        </label>
+        <button class="btn btn--primary btn--lg" id="submit" type="submit" style="width:100%">Send my details</button>
+        <div class="form__msg" id="formmsg">Thanks — we've got your details. Watch your inbox for the qualification forms and your discovery-call link.</div>
+        <p class="form__note">One-to-one contact only. Figures shown on this site are targets, not guarantees, and are not financial advice.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand">
+          <svg class="brand__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:24px;height:24px">
+            <path d="M12 2 L20 8 L14 9 L21 16 L12 13 L3 16 L10 9 L4 8 Z" fill="currentColor"/>
+          </svg>
+          Kestrel Sourcing
+        </div>
+        <p>Compliance-first property sourcing for UK investors. We find and appraise deals that meet your numbers — and only earn when one completes.</p>
+        <div class="footer__compliance">
+          <span>Company No. [—]</span>
+          <span>ICO Reg. [—]</span>
+          <span>Redress: TPO/PRS [—]</span>
+          <span>HMRC AML [—]</span>
+          <span>PI Insurance [—]</span>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#fees">Our fee</a></li>
+          <li><a href="#who">Who we work with</a></li>
+          <li><a href="#qualify">Qualify as an investor</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy notice</a></li>
+          <li><a href="#">Terms of service</a></li>
+          <li><a href="#">Complaints procedure</a></li>
+          <li><a href="#">Sourcing agreement</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer__legal">Kestrel Sourcing provides a property finding service to investors and does not provide financial, investment, tax or legal advice. Projected returns are estimates, not guarantees; the value of property investments can fall as well as rise. Finder's fees are payable on completion and are defined in your sourcing agreement. Always seek independent professional advice before investing. <em>[Placeholder copy — review with your solicitor before publishing.]</em></p>
+    <div class="footer__bar">
+      <span>© <span id="year">2026</span> Kestrel Sourcing Ltd. All rights reserved.</span>
+      <span>Made for serious investors.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav
+  (function(){
+    var t=document.getElementById('navtoggle'), l=document.getElementById('navlinks');
+    t.addEventListener('click',function(){
+      var open=l.classList.toggle('open');
+      t.setAttribute('aria-expanded',open);
+    });
+    l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){l.classList.remove('open');t.setAttribute('aria-expanded','false');});});
+  })();
+
+  // Scroll reveal
+  (function(){
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+    },{threshold:0.12});
+    els.forEach(function(e){io.observe(e);});
+  })();
+
+  // Fee calculator
+  (function(){
+    var price=document.getElementById('price'), roi=document.getElementById('roi'),
+        tier=document.getElementById('tier'), feeval=document.getElementById('feeval');
+    function clean(v){return parseFloat(String(v).replace(/[^0-9.]/g,''))||0;}
+    function gbp(n){return '£'+Math.round(n).toLocaleString('en-GB');}
+    function rate(r){
+      if(r>=30) return {pct:0.05,label:'5% — ROI 30%+'};
+      if(r>=25) return {pct:0.04,label:'4% — ROI 25–29.9%'};
+      if(r>=20) return {pct:0.02,label:'2% — ROI 20–24.9%'};
+      return {pct:0,label:'Below 20% — out of current scope'};
+    }
+    function calc(){
+      var p=clean(price.value), r=clean(roi.value), t=rate(r);
+      tier.textContent=t.label;
+      feeval.textContent = t.pct>0 ? gbp(p*t.pct) : '—';
+    }
+    price.addEventListener('input',function(){
+      var c=clean(price.value);
+      price.value=c?c.toLocaleString('en-GB'):'';
+      calc();
+    });
+    roi.addEventListener('input',calc);
+    calc();
+  })();
+
+  // Netlify form — AJAX submit keeps the visitor on the page and shows the branded message
+  (function(){
+    var form=document.getElementById('leadform');
+    if(!form) return;
+    var b=document.getElementById('submit'), m=document.getElementById('formmsg');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){ form.reportValidity(); return; }
+      var enc=new URLSearchParams(new FormData(form)).toString();
+      b.disabled=true; b.textContent='Sending…';
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:enc})
+        .then(function(){ m.classList.add('show'); b.textContent='Details sent ✓'; form.reset(); })
+        .catch(function(){ b.disabled=false; b.textContent='Send my details'; m.textContent='Sorry — something went wrong. Please email us directly.'; m.classList.add('show'); });
+    });
+  })();
+
+  document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
