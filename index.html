@@ -444,9 +444,11 @@
         </div>
       </div>
 
-      <form name="kestrel-interest" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="form reveal" id="leadform">
-        <input type="hidden" name="form-name" value="kestrel-interest" />
-        <p style="display:none"><label>Leave this empty: <input name="bot-field" /></label></p>
+      <form action="https://api.web3forms.com/submit" method="POST" class="form reveal" id="leadform">
+        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+        <input type="hidden" name="subject" value="New Kestrel Sourcing enquiry" />
+        <input type="hidden" name="from_name" value="Kestrel Sourcing website" />
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
         <h3>Register your interest</h3>
         <p class="small">Takes about two minutes.</p>
         <div class="form__row">
@@ -598,10 +600,10 @@
     form.addEventListener('submit',function(e){
       e.preventDefault();
       if(!form.checkValidity()){ form.reportValidity(); return; }
-      var enc=new URLSearchParams(new FormData(form)).toString();
       b.disabled=true; b.textContent='Sending…';
-      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:enc})
-        .then(function(){ m.classList.add('show'); b.textContent='Details sent ✓'; form.reset(); })
+      fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(form)})
+        .then(function(r){return r.json();})
+        .then(function(d){ if(d.success){ m.classList.add('show'); b.textContent='Details sent ✓'; form.reset(); } else { throw new Error('fail'); } })
         .catch(function(){ b.disabled=false; b.textContent='Send my details'; m.textContent='Sorry — something went wrong. Please email us directly.'; m.classList.add('show'); });
     });
   })();
