@@ -201,6 +201,10 @@
   .footer__legal{margin-top:26px;color:#6f7a72;font-size:0.76rem;line-height:1.6;max-width:90ch;}
   .footer__bar{margin-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#6f7a72;font-size:0.78rem;}
 
+  .footer__membership{display:flex;justify-content:flex-end;margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);}
+  .footer__membership img{display:block;width:240px;max-width:100%;height:auto;}
+  @media (max-width:540px){.footer__membership{justify-content:flex-start;}}
+
   /* ---- Reveal animation ---- */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1;transform:none;}
@@ -545,10 +549,10 @@
       <span>© <span id="year">2026</span> Kestrel Sourcing Ltd. All rights reserved.</span>
       <span>Made for serious investors.</span>
     </div>
+    <div class="footer__membership">
+      <img src="prs-logo.jpg" alt="Property Redress Scheme member" width="2048" height="580" loading="lazy" decoding="async">
+    </div>
   </div>
-  <div style="text-align:right;">
-  <img src="property-redress-logo.png" alt="Property Redress Scheme member" width="150" style="height:auto;margin-top:12px">
-</div>
 </footer>
 
 <script>
