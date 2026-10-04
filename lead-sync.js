@@ -27,8 +27,8 @@
       name: String(data.get('name') || '').trim(),
       phone: String(data.get('phone') || '').trim(),
       email: String(data.get('email') || '').trim(),
-      budget: String(data.get('budget') || '').trim(),
-      investorStatus: String(data.get('investor-status') || '').trim(),
+      investmentType: String(data.get('investment-type') || '').trim(),
+      additionalRequirements: String(data.get('additional-requirements') || '').trim(),
       consent: data.get('consent') ? 'yes' : 'no',
       sourceUrl: window.location.href,
       submittedAt: new Date().toISOString()

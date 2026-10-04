@@ -178,11 +178,12 @@
   .form__row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   .form__field{margin-bottom:14px;}
   .form__field label{display:block;font-size:0.78rem;font-weight:600;margin-bottom:6px;color:#3a433d;}
-  .form__field input,.form__field select{
+  .form__field input,.form__field select,.form__field textarea{
     width:100%;font-family:var(--sans);font-size:0.95rem;color:var(--ink);
     background:#fff;border:1px solid var(--line);border-radius:2px;padding:11px 12px;
   }
-  .form__field input:focus,.form__field select:focus{outline:none;border-color:var(--green-2);}
+  .form__field textarea{display:block;resize:vertical;min-height:110px;}
+  .form__field input:focus,.form__field select:focus,.form__field textarea:focus{outline:none;border-color:var(--green-2);}
   .form__msg{display:none;margin-top:14px;padding:13px 15px;border-radius:2px;background:#E4ECE5;border:1px solid #B9CDBF;color:var(--green);font-size:0.9rem;}
   .form__msg.show{display:block;}
   .form__note{margin-top:14px;font-size:0.74rem;color:var(--muted);line-height:1.5;}
@@ -471,26 +472,21 @@
           <label for="email">Email</label>
           <input id="email" name="email" type="email" autocomplete="email" required />
         </div>
-        <div class="form__row">
-          <div class="form__field">
-            <label for="budget">Investment budget</label>
-            <select id="budget" name="budget">
-              <option value="">Select…</option>
-              <option>Up to £150k</option>
-              <option>£150k – £300k</option>
-              <option>£300k – £500k</option>
-              <option>£500k+</option>
-            </select>
-          </div>
-          <div class="form__field">
-            <label for="exp">Investor status</label>
-            <select id="exp" name="investor-status">
-              <option value="">Select…</option>
-              <option>First investment</option>
-              <option>1–2 properties</option>
-              <option>Portfolio</option>
-            </select>
-          </div>
+        <div class="form__field">
+          <label for="investment-type">Investment type</label>
+          <select id="investment-type" name="investment-type">
+            <option value="">Select an investment type</option>
+            <option>Buy-to-let</option>
+            <option>Commercial to residential</option>
+            <option>Development land</option>
+            <option>HMO</option>
+            <option>Purchase Lease Option (PLO)</option>
+            <option>Short leases</option>
+          </select>
+        </div>
+        <div class="form__field">
+          <label for="additional-requirements">Additional requirements</label>
+          <textarea id="additional-requirements" name="additional-requirements" rows="4"></textarea>
         </div>
         <label class="form__consent" style="display:flex;gap:.55rem;align-items:flex-start;font-size:.85rem;line-height:1.4;margin:.85rem 0">
           <input type="checkbox" name="consent" required style="margin-top:.25rem;flex:none" />
