@@ -69,7 +69,12 @@
     try {
       var response = await fetch(webhook, {method: 'POST', body: new URLSearchParams(enquiry), signal: controller.signal});
       var result = await response.text();
-      if (!response.ok || result.trim() !== 'OK') throw new Error('Submission rejected');
+      // Make may acknowledge queue receipt with its standard "Accepted" body.
+      // Both acknowledgements confirm receipt, not completion of downstream tasks.
+      var acknowledgement = result.trim();
+      if (!response.ok || (acknowledgement !== 'OK' && acknowledgement !== 'Accepted')) {
+        throw new Error('Submission rejected');
+      }
       message.textContent = form.dataset.success;
       message.classList.add('show');
       button.textContent = 'Enquiry sent ✓';
