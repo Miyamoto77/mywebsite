@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FAQs — Kestrel Sourcing</title>
-<meta name="description" content="Answers to frequently asked questions about Kestrel Sourcing, fees, property viewings and our services." />
+<title>Kestrel Sourcing — Agents, brokers &amp; introducers</title>
+<meta name="description" content="Introduce UK property opportunities to Kestrel Sourcing. Clear buyer briefs, agreed introduction terms and a collaborative route from first conversation to completion." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -76,8 +76,8 @@
   .btn--ghost:hover{border-color:var(--green);color:var(--green);}
   .btn--lg{padding:16px 28px;font-size:1rem;}
   .nav__cta{display:inline-flex;}
-  .nav__links .nav__cta{background:#B91C1C;color:#FFFFFF;}
-  .nav__links .nav__cta:hover{background:#991B1B;color:#FFFFFF;}
+  .nav__links .nav__cta,.btn--consultation-red{background:#DC2626;color:#FFFFFF;}
+  .nav__links .nav__cta:hover,.btn--consultation-red:hover{background:#B91C1C;color:#FFFFFF;}
   .nav__toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;}
   .nav__toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.2s;}
 
@@ -178,11 +178,12 @@
   .form__row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   .form__field{margin-bottom:14px;}
   .form__field label{display:block;font-size:0.78rem;font-weight:600;margin-bottom:6px;color:#3a433d;}
-  .form__field input,.form__field select{
+  .form__field input,.form__field select,.form__field textarea{
     width:100%;font-family:var(--sans);font-size:0.95rem;color:var(--ink);
     background:#fff;border:1px solid var(--line);border-radius:2px;padding:11px 12px;
   }
-  .form__field input:focus,.form__field select:focus{outline:none;border-color:var(--green-2);}
+  .form__field textarea{display:block;resize:vertical;min-height:110px;}
+  .form__field input:focus,.form__field select:focus,.form__field textarea:focus{outline:none;border-color:var(--green-2);}
   .form__msg{display:none;margin-top:14px;padding:13px 15px;border-radius:2px;background:#E4ECE5;border:1px solid #B9CDBF;color:var(--green);font-size:0.9rem;}
   .form__msg.show{display:block;}
   .form__note{margin-top:14px;font-size:0.74rem;color:var(--muted);line-height:1.5;}
@@ -200,6 +201,10 @@
   .footer__compliance span{font-family:var(--mono);font-size:0.72rem;color:#7f8a82;}
   .footer__legal{margin-top:26px;color:#6f7a72;font-size:0.76rem;line-height:1.6;max-width:90ch;}
   .footer__bar{margin-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#6f7a72;font-size:0.78rem;}
+
+  .footer__membership{display:flex;justify-content:flex-end;margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);}
+  .footer__membership img{display:block;width:240px;max-width:100%;height:auto;}
+  @media (max-width:540px){.footer__membership{justify-content:flex-start;}}
 
   /* ---- Reveal animation ---- */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
@@ -231,23 +236,45 @@
     .reveal{opacity:1;transform:none;transition:none;}
     html{scroll-behavior:auto;}
   }
+
+  .nav__links{gap:20px;}
+  .ladder__thesis{max-width:30ch;}
+  .rung__fee{font-size:.83rem;letter-spacing:.04em;}
+  .rung__roi{font-family:var(--sans);font-size:.94rem;}
+  .hero__sub{max-width:42ch;}
+  .audience-faq{display:grid;gap:14px;}
+  .audience-faq details{border:1px solid var(--line);padding:20px 24px;background:var(--paper);}
+  .audience-faq summary{cursor:pointer;font-weight:600;}
+  .audience-faq details p{margin-top:12px;max-width:78ch;color:var(--muted);}
+  .form__consent{display:flex;gap:.65rem;align-items:flex-start;font-size:.85rem;line-height:1.5;margin:20px 0;}
+  .form__consent input{margin-top:.3rem;flex:none;}
+  .form__consent a,.form__note a{text-decoration:underline;text-underline-offset:3px;}
+  .form__msg.error{background:#fff0eb;border-color:#bd7660;color:#753b2b;}
+  .form__msg a{text-decoration:underline;}
+  .btn:disabled{cursor:wait;opacity:.7;transform:none;}
+  .reveal{opacity:1;transform:none;}
+  @media(min-width:901px) and (max-width:1100px){.nav__links{gap:12px}.nav__links a{font-size:.8rem}.nav__cta{padding:12px 14px}}
+
 </style>
+<link rel="canonical" href="https://kestrelsourcing.co.uk/agents.html">
+<meta property="og:title" content="Kestrel Sourcing — Agents, brokers &amp; introducers">
+<meta property="og:description" content="Introduce UK property opportunities to Kestrel Sourcing. Clear buyer briefs, agreed introduction terms and a collaborative route from first conversation to completion.">
+<meta property="og:url" content="https://kestrelsourcing.co.uk/agents.html">
+<meta property="og:type" content="website">
 </head>
 <body>
-
-<!-- NAV -->
 <header class="nav">
   <div class="wrap nav__inner">
-    <a class="brand" href="/#top" aria-label="Kestrel Sourcing home">
+    <a class="brand" href="index.html" aria-label="Kestrel Sourcing home">
       <svg class="brand__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 2 L20 8 L14 9 L21 16 L12 13 L3 16 L10 9 L4 8 Z" fill="currentColor"/>
       </svg>
       <span>Kestrel<br><small>Property Sourcing</small></span>
     </a>
     <nav class="nav__links" id="navlinks">
-      <a href="/#how">How it works</a>
-      <a href="/#fees">Our fee</a>
-      <a href="/#who">Who we work with</a>
+      <a href="index.html">Investors &amp; developers</a>
+      <a href="agents.html" aria-current="page">Agents &amp; introducers</a>
+      <a href="owners.html">Owners &amp; vendors</a>
       <a class="btn btn--primary nav__cta" href="https://cal.com/kestrelsourcing/15min">Book a free consultation call</a>
     </nav>
     <button class="nav__toggle" id="navtoggle" aria-label="Open menu" aria-expanded="false">
@@ -256,62 +283,40 @@
   </div>
 </header>
 
-<main id="top">
-  <section class="section">
-    <div class="wrap">
-      <div class="section__head">
-        <span class="eyebrow">Your questions</span>
-        <h1 style="font-size:clamp(2rem,5vw,3.5rem);margin-top:14px">Frequently asked questions</h1>
-        <p class="lede">Find answers to common questions about our property sourcing service.</p>
-      </div>
-      <div class="steps">
-        <article class="step" style="grid-template-columns:44px minmax(0,1fr);gap:20px">
-          <div class="step__num" aria-hidden="true">01</div>
-          <div class="step__body">
-            <h2 style="font-size:1.25rem;line-height:1.3">Why do I have to pay an upfront fee?</h2>
-            <p>This covers our administration costs of conducting viewings, due diligence, negotiating with the vendor and packaging the deal.</p>
-          </div>
-        </article>
-        <article class="step" style="grid-template-columns:44px minmax(0,1fr);gap:20px">
-          <div class="step__num" aria-hidden="true">02</div>
-          <div class="step__body">
-            <h2 style="font-size:1.25rem;line-height:1.3">Can I get the full details before paying the finders fee?</h2>
-            <p>Viewing the property is only possible after paying the reservation fee, as all the details of the deal are disclosed.</p>
-          </div>
-        </article>
-        <article class="step" style="grid-template-columns:44px minmax(0,1fr);gap:20px">
-          <div class="step__num" aria-hidden="true">03</div>
-          <div class="step__body">
-            <h2 style="font-size:1.25rem;line-height:1.3">Can I negotiate the finders fee?</h2>
-            <p>We respect and value our work by providing a quality service.</p>
-          </div>
-        </article>
-        <article class="step" style="grid-template-columns:44px minmax(0,1fr);gap:20px">
-          <div class="step__num" aria-hidden="true">04</div>
-          <div class="step__body">
-            <h2 style="font-size:1.25rem;line-height:1.3">What happens if the deal falls through?</h2>
-            <p>If it is the vendor side or a house does not fit the client mandate, then a full refund or replacement. If buyer side, e.g. client changes mind after reservation and full disclosure -no refund. Ideally only reserve when you are ready to close the deal that meets your requirements.</p>
-          </div>
-        </article>
-        <article class="step" style="grid-template-columns:44px minmax(0,1fr);gap:20px">
-          <div class="step__num" aria-hidden="true">05</div>
-          <div class="step__body">
-            <h2 style="font-size:1.25rem;line-height:1.3">Will the property rent out?</h2>
-            <p>Our research is based on evidence obtained from the market.</p>
-          </div>
-        </article>
-        <article class="step" style="grid-template-columns:44px minmax(0,1fr);gap:20px">
-          <div class="step__num" aria-hidden="true">06</div>
-          <div class="step__body">
-            <h2 style="font-size:1.25rem;line-height:1.3">Can I use your power team?</h2>
-            <p>Yes, we can provide introductions</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-</main>
 
+<main id="top">
+  <section class="hero"><div class="wrap hero__grid">
+    <div class="reveal"><span class="eyebrow">Agents · Brokers · Introducers</span><h1>You know the opportunity.<br>We find the <em>fit</em>.</h1><p class="hero__sub lede">Bring us a property, a land opportunity or a useful connection. We match it against investor and developer briefs, agree how we work together, and keep the conversation moving.</p>
+      <div class="hero__cta"><a class="btn btn--primary btn--lg btn--consultation-red" href="#enquire">Introduce an opportunity</a><a class="btn btn--ghost btn--lg" href="#how">See how it works</a></div>
+      <p class="hero__note"><span class="dot" aria-hidden="true"></span>Clear roles. Written terms. A relationship built for the next deal, too.</p>
+    </div>
+    <aside class="ladder reveal" aria-label="A considered introduction"><p class="ladder__head">A considered introduction</p><p class="ladder__thesis">The right opportunity starts with the right information.</p><div class="rung"><span class="rung__roi">Property &amp; location</span><span class="rung__fee">THE ASSET</span></div><div class="rung"><span class="rung__roi">Price &amp; key facts</span><span class="rung__fee">THE NUMBERS</span></div><div class="rung"><span class="rung__roi">Authority &amp; agreed terms</span><span class="rung__fee">THE RELATIONSHIP</span></div><p class="ladder__foot">Share a short overview first. We discuss fit and permissions before circulating sensitive details.</p></aside>
+  </div></section>
+  <section class="trust" aria-label="Working with Kestrel"><div class="wrap trust__row"><span class="trust__item"><span class="dot" aria-hidden="true"></span>Mandate-led matching</span><span class="trust__item"><span class="dot" aria-hidden="true"></span>Terms agreed before introductions</span><span class="trust__item"><span class="dot" aria-hidden="true"></span>Respect for existing relationships</span><span class="trust__item"><span class="dot" aria-hidden="true"></span>Clear feedback and next steps</span></div></section>
+  <section class="section" id="how"><div class="wrap"><div class="section__head reveal"><span class="eyebrow">The process</span><h2>A good introduction deserves a clear process</h2><p class="lede">From a first outline to a buyer conversation, we make responsibilities and next steps explicit.</p></div><div class="steps"><div class="step reveal"><div class="step__num">01</div><div class="step__body"><h3>Start with the essentials</h3><p>Tell us the property type, location, price expectations and why it may suit an investor or developer.</p></div><div class="step__agent"><b>What you share</b>A concise opportunity overview.</div></div><div class="step reveal"><div class="step__num">02</div><div class="step__body"><h3>Check the fit</h3><p>We compare the opportunity with current acquisition briefs and clarify anything needed for an appraisal.</p></div><div class="step__agent"><b>What we do</b>Review the brief and the facts.</div></div><div class="step reveal"><div class="step__num">03</div><div class="step__body"><h3>Agree the relationship</h3><p>We confirm your role, authority to introduce and any fee arrangement in writing before proceeding.</p></div><div class="step__agent"><b>What we agree</b>Responsibilities and introduction terms.</div></div><div class="step reveal"><div class="step__num">04</div><div class="step__body"><h3>Make the right introduction</h3><p>Where there is a fit, we coordinate the buyer conversation and the next information required, with permissions agreed.</p></div><div class="step__agent"><b>What happens next</b>A focused conversation and a clear next action.</div></div></div></div></section>
+  <section class="section section--alt" id="fit"><div class="wrap"><div class="section__head reveal"><span class="eyebrow">Fit</span><h2>Good opportunities come from good relationships</h2></div><div class="who"><div class="who__card reveal"><h3>Agents &amp; brokers</h3><p>A buyer brief worth discussing, a property that needs a specialist audience, or an opportunity your existing network has not yet matched.</p></div><div class="who__card reveal"><h3>Independent introducers</h3><p>A relevant property or trusted connection you have permission to introduce. Start with an outline; we will establish the right next step.</p></div><div class="who__card reveal"><h3>Professional networks</h3><p>Developers, advisers and local contacts with a useful opportunity or insight. We value informed introductions and clear expectations.</p></div></div></div></section>
+  <section class="section" id="questions"><div class="wrap"><div class="section__head"><span class="eyebrow">Before we begin</span><h2>A few useful answers</h2></div><div class="audience-faq"><details><summary>How are introduction fees handled?</summary><p>Any introduction fee, payment trigger and responsibilities are agreed in writing before we proceed. There is no automatic fee promise simply for sending an opportunity.</p></details><details><summary>Will you contact my client directly?</summary><p>We agree the contact route with you first. Tell us how you are involved and who has authority to share the opportunity so we can respect the existing relationship.</p></details><details><summary>What should I send first?</summary><p>A property type, location, price expectation, a short outline and your role are enough to start. Avoid sending identity documents or client-confidential files in this form.</p></details></div></div></section>
+  <section class="section cta" id="enquire"><div class="wrap cta__grid">
+    <div class="reveal"><span class="eyebrow">Step one</span><h2>Start a useful conversation</h2><p class="cta__lede">A property opportunity or a potential partnership: tell us the essentials and we will review the fit before asking for more.</p><div class="cta__steps"><div class="cta__step"><span>01</span>Share your role and a short outline</div><div class="cta__step"><span>02</span>We review the opportunity against buyer briefs</div><div class="cta__step"><span>03</span>Agree terms and the next conversation</div></div></div>
+    <form action="https://api.web3forms.com/submit" method="POST" class="form reveal" id="audienceform" data-success="Thanks — your introduction has been sent. We will review the outline and contact you about the next step.">
+      <input type="hidden" name="access_key" value="ce2130cd-e3f4-41bf-907e-08ec4f748656">
+      <input type="hidden" name="subject" value="Kestrel — agent, broker or introducer enquiry">
+      <input type="hidden" name="from_name" value="Kestrel Sourcing website">
+      <input type="hidden" name="audience" value="agent-broker-introducer">
+      <input type="hidden" name="source_url" value="https://kestrelsourcing.co.uk/agents.html">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <h3>Introduce an opportunity</h3><p class="small">The essentials are enough to start.</p>
+      <div class="form__row"><div class="form__field"><label for="fname">Full name</label><input id="fname" name="name" autocomplete="name" required maxlength="150"></div><div class="form__field"><label for="phone">Phone (optional)</label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40"></div></div>
+      <div class="form__field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="254"></div>
+      <div class="form__field"><label for="role">Your role</label><select id="role" name="role" required><option value="">Please select</option><option>Estate agent</option><option>Property broker</option><option>Independent introducer</option><option>Professional adviser</option><option>Other property contact</option></select></div>
+      <div class="form__field"><label for="details">Opportunity or partnership outline</label><textarea id="details" name="opportunity_outline" rows="5" required maxlength="5000" placeholder="Property type, location, price expectation, your involvement and any timing or access constraints."></textarea></div>
+      <label class="form__consent"><input type="checkbox" name="consent" required><span>I agree to be contacted about this opportunity or partnership and have read the <a href="privacy.html">privacy notice</a>.</span></label>
+      <button class="btn btn--primary btn--lg" id="submit" type="submit" style="width:100%">Send my enquiry</button>
+      <div class="form__msg" id="formmsg" role="status" aria-live="polite"></div>
+      <p class="form__note">Please share only information you have permission to disclose. Introduction terms must be agreed in writing. Prefer email? <a href="mailto:admin@kestrelsourcing.co.uk">admin@kestrelsourcing.co.uk</a>.</p>
+    </form>
+  </div></section>
+</main>
 <!-- FOOTER -->
 <footer class="footer">
   <div class="wrap">
@@ -323,7 +328,7 @@
           </svg>
           Kestrel Sourcing
         </div>
-        <p>Compliance-first property sourcing for UK investors. We find and appraise deals that meet your numbers — and only earn when one completes.</p>
+        <p>Compliance-first property sourcing for UK investors. We find and appraise deals that meet your numbers — with fees payable on exchange (private investors) and on completion (corporate investors).</p>
         <div class="footer__compliance">
           <span>Company No. [13365056]</span>
           <span>ICO Reg. [ZC172725]</span>
@@ -335,13 +340,13 @@
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="/#how">How it works</a></li>
-          <li><a href="/#fees">Our fee</a></li>
-          <li><a href="/#who">Who we work with</a></li>
-          <li><a href="/#qualify">Join Our Investor Network</a></li>
-          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="index.html#how">How it works</a></li>
+          <li><a href="index.html#fees">Our fee</a></li>
+          <li><a href="index.html#who">Who we work with</a></li>
+          <li><a href="index.html#qualify">Join Our Investor Network</a></li>
           <li><a href="agents.html">Agents, brokers &amp; introducers</a></li>
           <li><a href="owners.html">Owners &amp; vendors</a></li>
+          <li><a href="faq.html">FAQs</a></li>
         </ul>
       </div>
       <div>
@@ -354,23 +359,17 @@
         </ul>
       </div>
     </div>
-    <p class="footer__legal">Kestrel Sourcing provides a property finding service to investors and does not provide financial, investment, tax or legal advice. Projected returns are estimates, not guarantees; the value of property investments can fall as well as rise. Finder's fees are payable on completion and are defined in your sourcing agreement. Always seek independent professional advice before investing. <em></em></p>
+    <p class="footer__legal">Kestrel Sourcing provides a property finding service to investors and does not provide financial, investment, tax or legal advice. Projected returns are estimates, not guarantees; the value of property investments can fall as well as rise. Finder's fees are payable on exchange (private investors) and on completion (corporate investors), as defined in your sourcing agreement. Always seek independent professional advice before investing. <em></em></p>
     <div class="footer__bar">
       <span>© <span id="year">2026</span> Kestrel Sourcing Ltd. All rights reserved.</span>
-      <span>Made for serious investors.</span>
+      <span>Built on clear briefs and good relationships.</span>
+    </div>
+    <div class="footer__membership">
+      <img src="prs-logo.jpg" alt="Property Redress Scheme member" width="2048" height="580" loading="lazy" decoding="async">
     </div>
   </div>
-  <div style="text-align:right;">
-  <img src="property-redress-logo.png" alt="Property Redress Scheme member" width="150" style="height:auto;margin-top:12px">
-</div>
 </footer>
 
-<script>
-(function(){
-  var t=document.getElementById('navtoggle'), l=document.getElementById('navlinks');
-  t.addEventListener('click',function(){var open=l.classList.toggle('open');t.setAttribute('aria-expanded',String(open));});
-  document.getElementById('year').textContent=new Date().getFullYear();
-})();
-</script>
+<script src="audience-enquiry.js"></script>
 </body>
 </html>
