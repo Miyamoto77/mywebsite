@@ -1,0 +1,20 @@
+/* Additional navigation entries use the existing Kestrel menu. */
+@media (min-width:1101px) {
+  .nav__links {gap:14px}
+  .nav__links a {font-size:.83rem;white-space:nowrap}
+  .nav__links .nav__cta {padding:12px 15px;font-size:.83rem}
+}
+@media (max-width:1100px) {
+  .nav__links {display:none;position:absolute;top:66px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:0;background:var(--paper);border-bottom:1px solid var(--line);padding:8px 28px 20px;max-height:calc(100dvh - 66px);overflow-y:auto}
+  .nav__links.open {display:flex}
+  .nav__links a {padding:13px 0;width:100%;border-bottom:1px solid var(--line-soft);font-size:.92rem}
+  .nav__links .nav__cta {margin-top:14px;width:100%;padding:13px 22px}
+  .nav__toggle {display:block}
+}
+.nav__in {gap:18px;flex-wrap:wrap}
+.nav__in .tool-nav-link {font-size:.87rem}
+@media (max-width:600px) {
+  .nav__in .brand {flex-basis:100%}
+  .nav__in {padding-top:12px;padding-bottom:12px;gap:10px 18px}
+  .nav__in .home {margin-left:0}
+}
