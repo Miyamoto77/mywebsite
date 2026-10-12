@@ -18,3 +18,7 @@
   .nav__in {padding-top:12px;padding-bottom:12px;gap:10px 18px}
   .nav__in .home {margin-left:0}
 }
+
+/* Supplied Kestrel mark: square aspect ratio and consistent alignment. */
+.brand__mark.kestrel-logo{display:block;width:40px;height:40px;object-fit:contain;flex:0 0 auto}
+.footer__brand .kestrel-logo{width:40px;height:40px}
