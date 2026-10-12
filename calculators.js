@@ -165,5 +165,135 @@
       return { year, propertyValue, loan: result.debt.balance(year * 12), equity: propertyValue - result.debt.balance(year * 12), income, costs: variable + fixed + debtPayments, cashflow, accumulated };
     });
   }
-  return { sdlt, finance, acquisition, rental, bmv, flip, brr, projections };
+  function developmentBudget(d) {
+    const build = d.buildMode === 'total' ? nonnegative(d.buildCost, 'Base build cost')
+      : positive(d.buildArea, 'Gross internal floor area') * nonnegative(d.buildRate, 'Build rate');
+    const external = nonnegative(d.external ?? 0, 'External works'), abnormal = nonnegative(d.abnormal ?? 0, 'Abnormal costs');
+    const hardCosts = build + external + abnormal;
+    const professionalFees = hardCosts * percentage(d.professionalPct ?? 0, 'Professional fees') / 100;
+    const contingency = hardCosts * percentage(d.contingencyPct ?? 0, 'Contingency') / 100;
+    const planning = nonnegative(d.planning ?? 0, 'Planning costs'), obligations = nonnegative(d.obligations ?? 0, 'Planning obligations');
+    const otherDevelopment = nonnegative(d.otherDevelopment ?? 0, 'Other development costs'), vat = nonnegative(d.unrecoverableVat ?? 0, 'Unrecoverable VAT');
+    const developmentCost = hardCosts + professionalFees + contingency + planning + obligations + otherDevelopment + vat;
+    return { build, external, abnormal, hardCosts, professionalFees, contingency, planning, obligations, otherDevelopment, vat, developmentCost };
+  }
+  function residualDevelopment(d) {
+    const gdv = d.gdvMode === 'units'
+      ? positive(d.units, 'Residential units') * positive(d.unitValue, 'Average unit sale value') + nonnegative(d.otherGdv, 'Other GDV')
+      : positive(d.gdv, 'Gross development value');
+    if (d.gdvMode === 'units' && !Number.isInteger(Number(d.units))) throw new Error('Residential units must be a whole number.');
+    const { build, external, abnormal, hardCosts, professionalFees, contingency, planning, obligations, otherDevelopment, vat, developmentCost } = developmentBudget(d);
+    const selling = gdv * percentage(d.salesPct ?? 0, 'Sales / marketing') / 100;
+    const salesLegal = nonnegative(d.salesLegal ?? 0, 'Sales legal fees');
+    const acquisitionPct = percentage(d.acquisitionPct ?? 0, 'Land acquisition fee allowance');
+    const purchaseLegal = nonnegative(d.purchaseLegal ?? 0, 'Purchase legal / due diligence fees');
+    const sourcing = nonnegative(d.sourcing ?? 0, 'Sourcing fee');
+    const profitPct = percentage(d.profitPct, 'Target profit', 95);
+    if (!['gdv', 'cost'].includes(d.profitBasis)) throw new Error('Select a target profit basis.');
+    if (!['estimate', 'manual', 'cash'].includes(d.developmentFinance)) throw new Error('Select a finance allowance method.');
+    const financeSettings = d.developmentFinance === 'estimate' ? {
+      share: percentage(d.fundedPct, 'Debt-funded share') / 100,
+      rate: percentage(d.developmentRate, 'Finance interest') / 100,
+      months: positive(d.developmentMonths, 'Project duration'),
+      draw: percentage(d.averageDrawnPct, 'Average development draw') / 100,
+      fee: percentage(d.loanFeePct ?? 0, 'Lender fees') / 100,
+      fixed: nonnegative(d.otherFinance ?? 0, 'Other finance fees')
+    } : null;
+    const fixedFinance = d.developmentFinance === 'manual' ? nonnegative(d.manualFinance, 'Finance budget') : 0;
+    const atLand = land => {
+      land = nonnegative(land, 'Land / site price');
+      const tax = d.taxMode === 'manual' ? nonnegative(d.manualTax, 'Purchase tax allowance') : sdlt(land, d).total;
+      const acquisitionFees = land * acquisitionPct / 100 + purchaseLegal + sourcing;
+      const siteCost = land + tax + acquisitionFees;
+      let landDebt = 0, worksDebt = 0, interest = 0, lenderFees = 0, financeCost = fixedFinance;
+      if (financeSettings) {
+        landDebt = siteCost * financeSettings.share;
+        worksDebt = developmentCost * financeSettings.share;
+        interest = (landDebt + worksDebt * financeSettings.draw) * financeSettings.rate * financeSettings.months / 12;
+        lenderFees = (landDebt + worksDebt) * financeSettings.fee + financeSettings.fixed;
+        financeCost = interest + lenderFees;
+      }
+      const totalCost = siteCost + developmentCost + selling + salesLegal + financeCost;
+      const profit = gdv - totalCost;
+      const targetProfit = (d.profitBasis === 'cost' ? totalCost : gdv) * profitPct / 100;
+      return { land, tax, acquisitionFees, siteCost, landDebt, worksDebt, interest, lenderFees, financeCost,
+        totalCost, profit, targetProfit, targetHeadroom: profit - targetProfit,
+        profitOnGdv: ratio(profit, gdv), profitOnCost: ratio(profit, totalCost) };
+    };
+    // Tax bands and finance both depend on the site price. Keep the feasible
+    // lower bound: corporate SDLT can jump abruptly above its price threshold.
+    const atZero = atLand(0), actual = atLand(nonnegative(d.landPrice, 'Entered site price'));
+    let residualLand = null, residual = null;
+    if (atZero.targetHeadroom >= 0) {
+      let lower = 0, upper = gdv;
+      for (let i = 0; i < 90; i++) {
+        const mid = (lower + upper) / 2;
+        if (atLand(mid).targetHeadroom >= 0) lower = mid;
+        else upper = mid;
+      }
+      residualLand = lower;
+      residual = atLand(lower);
+    }
+    return { gdv, build, external, abnormal, hardCosts, professionalFees, contingency, planning, obligations,
+      otherDevelopment, vat, developmentCost, selling, salesLegal, profitPct, actual, residual, residualLand,
+      shortfallAtZero: Math.max(0, -atZero.targetHeadroom), landHeadroom: residualLand == null ? null : residualLand - actual.land };
+  }
+  function developmentSensitivity(d) {
+    const base = residualDevelopment(d), changes = [-10, -5, 0, 5, 10];
+    return { changes, rows: changes.map(buildChange => ({ buildChange, values: changes.map(gdvChange => {
+      const scenario = residualDevelopment({ ...d, gdvMode: 'total', gdv: base.gdv * (1 + gdvChange / 100),
+        buildMode: 'total', buildCost: base.build * (1 + buildChange / 100) });
+      return { gdvChange, residualLand: scenario.residualLand, shortfallAtZero: scenario.shortfallAtZero };
+    }) })) };
+  }
+  function commercialConversion(d) {
+    const price = positive(d.price, 'Purchase price'), units = positive(d.units, 'Residential units');
+    if (!Number.isInteger(units)) throw new Error('Residential units must be a whole number.');
+    const residentialValue = units * positive(d.unitValue, 'Average unit sale value');
+    const commercialValue = d.keepCommercial === 'yes' ? nonnegative(d.commercialValue, 'Commercial value') : 0;
+    const commercialRent = d.keepCommercial === 'yes' ? nonnegative(d.commercialRent, 'Commercial annual rent') : 0;
+    const gdv = residentialValue + commercialValue;
+    const budget = developmentBudget({ ...d, obligations: nonnegative(d.cil ?? 0, 'CIL') + nonnegative(d.s106 ?? 0, 'S106') });
+    const tax = d.taxMode === 'manual' ? nonnegative(d.manualTax, 'Purchase tax') : sdlt(price, d).total;
+    const purchaseLegal = nonnegative(d.purchaseLegal ?? 0, 'Purchase legal fees');
+    const auctionFees = nonnegative(d.auctionFees ?? 0, 'Auction fees');
+    const sourcing = nonnegative(d.sourcing ?? 0, 'Sourcing fee');
+    const survey = nonnegative(d.survey ?? 0, 'Survey / acquisition costs');
+    const purchaseCost = price + tax + purchaseLegal + auctionFees + sourcing + survey;
+    const months = positive(d.projectMonths, 'Project duration');
+    const holding = nonnegative(d.holdingMonthly ?? 0, 'Monthly utilities / holding costs') * months;
+    const accountancy = nonnegative(d.accountancy ?? 0, 'Accountancy');
+    if (!['cash', 'bridge', 'manual'].includes(d.conversionFinance)) throw new Error('Select a project finance method.');
+    const bridge = d.conversionFinance === 'bridge' ? price * percentage(d.bridgeLtv, 'Bridging LTV', 99) / 100 : 0;
+    const interest = bridge ? bridge * percentage(d.bridgeRate, 'Annual bridging interest') / 100 * months / 12 : 0;
+    const lenderFees = bridge ? bridge * percentage(d.bridgeFeePct ?? 0, 'Bridging fees') / 100 + nonnegative(d.bridgeOtherFees ?? 0, 'Other bridging fees') : 0;
+    const financeCost = d.conversionFinance === 'manual' ? nonnegative(d.projectFinanceBudget, 'Project finance budget') : interest + lenderFees;
+    const projectCost = purchaseCost + budget.developmentCost + holding + accountancy + financeCost;
+    const salesPct = percentage(d.salesPct ?? 0, 'Sales / marketing', 95);
+    const sales = gdv * salesPct / 100, salesLegal = nonnegative(d.salesLegal ?? 0, 'Sales solicitors');
+    const totalSaleCost = projectCost + sales + salesLegal, profit = gdv - totalSaleCost;
+    const targetProfit = gdv * percentage(d.targetRogdv, 'Target ROGDV', 95) / 100;
+    const grossRent = units * nonnegative(d.unitRent, 'Monthly rent per flat') * 12 + commercialRent;
+    const op = operating({ ...d, rent: grossRent / 12 }, grossRent);
+    if (!['interest', 'repayment'].includes(d.holdFinance)) throw new Error('Select the refinance mortgage type.');
+    const term = positive(d.term, 'Refinance term'), stressRate = positive(d.stressRate, 'Stress interest rate');
+    const dscr = positive(d.minimumDscr, 'Target debt-service coverage') / 100;
+    const debtFactor = finance(1, stressRate, term, d.holdFinance).monthly * 12;
+    const ltvLoan = gdv * percentage(d.refiLtv, 'Refinance LTV', 99) / 100;
+    const incomeLoan = Math.max(0, op.netOperating) / (dscr * debtFactor);
+    const refinanceLoan = Math.min(ltvLoan, incomeLoan);
+    const mortgage = finance(refinanceLoan, percentage(d.rate, 'Mortgage interest'), term, d.holdFinance);
+    const refinanceFees = refinanceLoan * percentage(d.refiFeePct ?? 0, 'Refinance fees') / 100 + nonnegative(d.refiLegal ?? 0, 'Refinance legal costs');
+    const initialCash = projectCost - bridge;
+    const cashReleased = refinanceLoan - bridge - refinanceFees;
+    const cashLeft = initialCash - cashReleased;
+    const annualCashflow = op.netOperating - mortgage.monthly * 12;
+    return { price, units, residentialValue, commercialValue, commercialRent, gdv, budget, tax, purchaseLegal, auctionFees, sourcing, survey,
+      purchaseCost, holding, accountancy, bridge, interest, lenderFees, financeCost, projectCost, sales, salesLegal,
+      totalSaleCost, profit, targetProfit, targetHeadroom: profit - targetProfit, rogdv: ratio(profit, gdv), roc: ratio(profit, totalSaleCost),
+      breakEvenGdv: (projectCost + salesLegal) / (1 - salesPct / 100), grossRent, op, ltvLoan, incomeLoan, refinanceLoan, mortgage,
+      refinanceFees, initialCash, cashReleased, cashLeft, equity: gdv - refinanceLoan, annualCashflow, monthlyCashflow: annualCashflow / 12,
+      cashReturn: ratio(annualCashflow, cashLeft), stressDscr: refinanceLoan > 0 ? op.netOperating / (refinanceLoan * debtFactor) : null };
+  }
+  return { sdlt, finance, acquisition, rental, bmv, flip, brr, projections, residualDevelopment, developmentSensitivity, commercialConversion };
 });
