@@ -48,6 +48,10 @@
       message.classList.add('show', 'error');
       return;
     }
+    var additionalInformation = String(fields.get('additional_information') || '').trim();
+    if (additionalInformation) {
+      values.additionalRequirements += '\n\nAny additional information:\n' + additionalInformation;
+    }
     // Keep the same identifier on a network retry of the same enquiry.
     var nextSignature = JSON.stringify(values);
     if (!enquiry || signature !== nextSignature) {
