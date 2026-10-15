@@ -24,6 +24,7 @@
       triggerEvent: 'WEBSITE_ENQUIRY',
       formMarker: FORM_MARKER,
       leadId: makeLeadId(),
+      discoveryToken: window.crypto.randomUUID().replace(/-/g, ''),
       name: String(data.get('name') || '').trim(),
       phone: String(data.get('phone') || '').trim(),
       email: String(data.get('email') || '').trim(),
