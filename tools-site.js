@@ -19,13 +19,16 @@
     if (!Array.isArray(manifest.items) || !manifest.items.length) return;
     const fragment = document.createDocumentFragment();
     manifest.items.forEach(item => {
-      // Downloads are same-site files; metadata is inserted as text, never HTML.
-      if (typeof item.file !== 'string' || !/^downloads\/[a-zA-Z0-9_/-]+\.pdf$/.test(item.file) || item.file.split('/').includes('..')) return;
+      if (!item || !/^[a-z0-9][a-z0-9-]{0,79}$/.test(item.id || '')) return;
+      const published = item.status === 'published' && typeof item.file === 'string'
+        && /^downloads\/[a-zA-Z0-9_/-]+\.pdf$/.test(item.file) && !item.file.split('/').includes('..');
+      if (!published && item.status !== 'coming-soon') return;
       const card = document.createElement('article'); card.className = 'tool-card';
-      const badge = document.createElement('span'); badge.className = 'eyebrow'; badge.textContent = item.category || 'Free guide';
-      const title = document.createElement('h2'); title.textContent = item.title || 'Property guide';
+      const badge = document.createElement('span'); badge.className = 'eyebrow'; badge.textContent = item.category || (published ? 'Free resource' : 'Coming soon');
+      const title = document.createElement('h2'); title.textContent = item.title || 'Kestrel resource';
       const description = document.createElement('p'); description.textContent = item.description || '';
-      const link = document.createElement('a'); link.href = item.file; link.download = ''; link.className = 'btn btn--primary'; link.textContent = 'Download free PDF';
+      const link = document.createElement('a'); link.href = 'resource-download.html?resource=' + encodeURIComponent(item.id);
+      link.className = 'btn btn--primary'; link.textContent = published ? 'Get your free download' : 'Preview signup form';
       card.append(badge, title, description, link); fragment.append(card);
     });
     if (fragment.childElementCount) {

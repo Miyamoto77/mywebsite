@@ -1,3 +1,18 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "ebook-placeholder",
+      "title": "Free ebook",
+      "category": "Ebook · coming soon",
+      "description": "A Kestrel ebook is being prepared. The title and download will appear here when it is ready.",
+      "status": "coming-soon"
+    },
+    {
+      "id": "guide-placeholder",
+      "title": "Practical guide",
+      "category": "Guide · coming soon",
+      "description": "A practical Kestrel guide is being prepared. The title and download will appear here when it is ready.",
+      "status": "coming-soon"
+    }
+  ]
 }
