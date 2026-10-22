@@ -8,11 +8,12 @@
       "status": "coming-soon"
     },
     {
-      "id": "guide-placeholder",
-      "title": "Practical guide",
-      "category": "Guide · coming soon",
-      "description": "A practical Kestrel guide is being prepared. The title and download will appear here when it is ready.",
-      "status": "coming-soon"
+      "id": "first-home-england",
+      "title": "Your First Home in England",
+      "category": "Free guide · 3 pages",
+      "description": "A concise first-time buyer guide: seven steps from budget to keys, indicative costs, a timeline and the key terms you need to know.",
+      "file": "downloads/first-home-england-quick-guide.pdf",
+      "status": "published"
     }
   ]
 }
