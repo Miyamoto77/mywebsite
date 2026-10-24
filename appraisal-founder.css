@@ -1,0 +1,41 @@
+
+/* Worked appraisal and founder */
+#worked-example,#founder{scroll-margin-top:88px}
+.example-notice{border-left:3px solid var(--brass);background:var(--paper-2);padding:20px 24px;margin-bottom:34px;font-size:.94rem;color:#39423c}
+.example-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.example-block h3,.founder-copy h3{font-size:1.35rem;margin-bottom:14px}
+.example-block p{color:#3c453f}
+.example-tables{margin-top:36px;display:grid;gap:28px}
+.table-scroll{max-width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:4px}
+.appraisal-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.appraisal-table caption{text-align:left;padding:18px 20px;font-weight:700;font-size:1rem;background:var(--paper-2)}
+.appraisal-table th,.appraisal-table td{padding:13px 20px;text-align:left;border-top:1px solid var(--line-soft);vertical-align:top}
+.appraisal-table thead th{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.appraisal-table .money{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.appraisal-table tfoot{font-weight:700;background:var(--paper-2)}
+.example-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:28px 0}
+.example-metric{border-top:2px solid var(--brass);padding:20px;background:var(--paper-2)}
+.example-metric span{display:block;font-size:.78rem;color:var(--muted);margin-bottom:10px}
+.example-metric strong{font-family:var(--mono);font-size:clamp(1.3rem,2.8vw,1.8rem);color:var(--green)}
+.example-fee{background:var(--green);color:var(--on-green);padding:28px;border-radius:4px;margin:28px 0}
+.example-fee h3{font-size:1.4rem;color:#fff;margin-bottom:16px}
+.example-fee p+p{margin-top:14px}
+.example-fee .fee-amount{font-family:var(--mono);font-size:1.75rem;color:#E7C679}
+.example-method{margin-top:32px}
+.example-method h3{font-size:1.35rem;margin-bottom:16px}
+.example-method ul{padding-left:22px;color:#3c453f;display:grid;gap:12px}
+.example-method p{margin-top:18px}
+.example-small{font-size:.83rem;color:var(--muted);margin-top:16px}
+.founder-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:56px}
+.founder-name{font-family:var(--serif);font-size:2.2rem;line-height:1.1;margin-top:22px}
+.founder-role{font-size:.85rem;color:var(--muted);margin-top:10px}
+.founder-copy p+p{margin-top:18px}
+.founder-copy .btn{margin-top:26px}
+.about-hero{padding:74px 0 48px}
+.about-hero h1{font-size:clamp(2.4rem,5vw,3.6rem);max-width:20ch;margin-top:18px}
+.about-body{max-width:760px;padding-bottom:80px}
+.about-body section{padding:32px 0;border-top:1px solid var(--line)}
+.about-body h2{font-size:1.7rem;margin-bottom:20px}
+.about-body h3{font-size:1.15rem;margin:24px 0 10px}
+.about-body p+p{margin-top:18px}
+@media(max-width:760px){.example-grid,.founder-grid{grid-template-columns:1fr;gap:28px}.example-metrics{grid-template-columns:1fr}.appraisal-table th,.appraisal-table td{padding:12px}.example-fee{padding:22px}.example-notice{padding:18px}.founder-name{margin-top:14px}}
