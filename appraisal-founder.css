@@ -39,3 +39,9 @@
 .about-body h3{font-size:1.15rem;margin:24px 0 10px}
 .about-body p+p{margin-top:18px}
 @media(max-width:760px){.example-grid,.founder-grid{grid-template-columns:1fr;gap:28px}.example-metrics{grid-template-columns:1fr}.appraisal-table th,.appraisal-table td{padding:12px}.example-fee{padding:22px}.example-notice{padding:18px}.founder-name{margin-top:14px}}
+
+/* Keep the calculator hub's appraisal compact. */
+#worked-example .example-tables{gap:18px}
+#worked-example .table-scroll{margin:0}
+#worked-example{padding-bottom:24px}
+#worked-example + .tool-hero{padding-top:24px}
