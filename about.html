@@ -257,6 +257,11 @@
 .about-hero{padding:40px 0 32px}
 @media(max-width:540px){.about-discovery-actions{flex-direction:column;align-items:stretch}}
 </style>
+<style id="about-founder-photo">
+.about-profile{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:40px;align-items:center}
+.about-profile__photo{display:block;width:240px;height:240px;object-fit:cover;border-radius:4px;border:1px solid var(--line)}
+@media(max-width:640px){.about-profile{grid-template-columns:1fr;gap:24px}.about-profile__photo{width:180px;height:180px}}
+</style>
 </head>
 <body>
 
@@ -285,10 +290,13 @@
 
 <main id="top">
   <section class="about-hero">
-    <div class="wrap">
-      <span class="eyebrow">Who you’ll work with</span>
-      <h1>Meet Robert Ohayo</h1>
-      <p class="founder-role"><strong>Founder, Kestrel Sourcing | Cost Consultant</strong></p>
+    <div class="wrap about-profile">
+      <div class="about-profile__intro">
+        <span class="eyebrow">Who you’ll work with</span>
+        <h1>Meet Robert Ohayo</h1>
+        <p class="founder-role"><strong>Founder, Kestrel Sourcing | Cost Consultant</strong></p>
+      </div>
+      <img class="about-profile__photo" src="robert-ohayo-portrait.jpg" alt="Robert Ohayo, founder of Kestrel Sourcing" width="2048" height="2048" decoding="async">
     </div>
   </section>
   <div class="wrap">
