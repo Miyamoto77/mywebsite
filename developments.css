@@ -18,7 +18,7 @@
 .dev-section__head{max-width:62ch;margin-bottom:32px}
 .dev-section h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-top:14px}
 .dev-section__head>p{margin-top:18px;color:#3c453f}
-.dev-opportunities{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
+.dev-opportunities{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
 .dev-opportunities article{border-top:1px solid var(--line);padding-top:24px}
 .dev-number{font-size:.72rem;letter-spacing:.08em;color:#77602e}
 .dev-opportunities h3{font-size:1.45rem;line-height:1.15;margin:15px 0}
@@ -52,5 +52,5 @@
 .dev-footer .footer__top{padding-bottom:26px}
 .dev-footer .footer__bar{color:#a9b6ae}
 @media(min-width:901px){.development-page .nav__links{display:flex;position:static;flex-direction:row;align-items:center;gap:22px;background:transparent;border:0;padding:0;max-height:none;overflow:visible}.development-page .nav__links a{width:auto;padding:0;border:0;font-size:.85rem;white-space:nowrap}.development-page .nav__links .nav__cta{width:auto;margin:0;padding:12px 18px}.development-page .nav__toggle{display:none}}
-@media(max-width:900px){.dev-hero__grid,.dev-approach,.dev-contact__grid{grid-template-columns:1fr;gap:36px}.dev-focus{max-width:500px;width:100%}.dev-approach .dev-section__head{margin-bottom:0}.dev-contact__action{border-left:0;border-top:1px solid rgba(255,255,255,.2);padding:26px 0 0}.dev-sourcing__inner{flex-direction:column;align-items:flex-start;gap:16px}.dev-opportunities{gap:30px}}
+@media(max-width:900px){.dev-hero__grid,.dev-approach,.dev-contact__grid{grid-template-columns:1fr;gap:36px}.dev-focus{max-width:500px;width:100%}.dev-approach .dev-section__head{margin-bottom:0}.dev-contact__action{border-left:0;border-top:1px solid rgba(255,255,255,.2);padding:26px 0 0}.dev-sourcing__inner{flex-direction:column;align-items:flex-start;gap:16px}.dev-opportunities{grid-template-columns:1fr;gap:30px}}
 @media(max-width:540px){.dev-hero,.dev-section,.dev-contact{padding:40px 0}.dev-hero h1{font-size:2.65rem}.dev-hero__intro{font-size:1.2rem}.dev-opportunities{grid-template-columns:1fr}.dev-focus{padding:24px}.dev-focus__logo{width:128px;height:128px}.dev-actions{flex-direction:column;align-items:stretch}.dev-contact .eyebrow{font-size:.65rem;letter-spacing:.06em}.dev-contact .eyebrow::before{width:14px}.dev-contact__action .btn{width:100%;padding:16px 14px;font-size:.95rem}.dev-sourcing a{white-space:normal}.dev-steps li{gap:12px}.dev-footer{padding-top:32px}}
