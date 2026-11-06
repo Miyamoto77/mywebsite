@@ -13,6 +13,13 @@
   }
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
+  const calculatorNav = document.querySelector('.tool-strip');
+  if (calculatorNav && !calculatorNav.querySelector('a[href="rent-to-rent-calculator.html"]')) {
+    const link = document.createElement('a');
+    link.href = 'rent-to-rent-calculator.html';
+    link.textContent = 'Rent-to-Rent Calculator';
+    calculatorNav.append(link);
+  }
   const resourceList = document.getElementById('resource-list');
   if (!resourceList) return;
   fetch('resources.json').then(r => { if (!r.ok) throw new Error('Resources unavailable'); return r.json(); }).then(manifest => {
@@ -37,3 +44,4 @@
     }
   }).catch(() => { document.getElementById('resources-empty').querySelector('p').textContent = 'Our free resources are being prepared. Please check back soon.'; });
 })();
+
