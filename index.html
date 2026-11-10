@@ -565,6 +565,31 @@ main > .section{padding:52px 0}
           </select>
         </div>
         <div class="form__field">
+          <label for="purchase-timeframe">When are you looking to buy?</label>
+          <select id="purchase-timeframe" name="purchase-timeframe" required>
+            <option value="">Select a timeframe</option>
+            <option>As soon as possible</option>
+            <option>Within 3 months</option>
+            <option>3–6 months</option>
+            <option>6–12 months</option>
+            <option>More than 12 months</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form__field">
+          <label for="purchase-funding">How do you plan to fund the purchase?</label>
+          <select id="purchase-funding" name="purchase-funding" required aria-describedby="purchase-funding-note">
+            <option value="">Select a funding method</option>
+            <option>Cash / own funds</option>
+            <option>Mortgage</option>
+            <option>Cash and mortgage</option>
+            <option>Bridging / development finance</option>
+            <option>Other / combination of funding</option>
+            <option>Not sure yet</option>
+          </select>
+          <p class="form__note" id="purchase-funding-note">An indication is fine — we’ll discuss the details during discovery.</p>
+        </div>
+        <div class="form__field">
           <label for="additional-requirements">Additional requirements</label>
           <textarea id="additional-requirements" name="additional-requirements" rows="4"></textarea>
         </div>
@@ -700,6 +725,6 @@ main > .section{padding:52px 0}
   document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 
-<script src="lead-sync.js?v=2"></script>
+<script src="lead-sync.js?v=3"></script>
 </body>
 </html>

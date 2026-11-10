@@ -29,6 +29,8 @@
       phone: String(data.get('phone') || '').trim(),
       email: String(data.get('email') || '').trim(),
       investmentType: String(data.get('investment-type') || '').trim(),
+      purchaseTimeframe: String(data.get('purchase-timeframe') || '').trim(),
+      purchaseFunding: String(data.get('purchase-funding') || '').trim(),
       additionalRequirements: String(data.get('additional-requirements') || '').trim(),
       consent: data.get('consent') ? 'yes' : 'no',
       sourceUrl: window.location.href,
