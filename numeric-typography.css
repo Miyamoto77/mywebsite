@@ -1,0 +1,19 @@
+/* Shared numerical typography. Sizes, line heights, colours and layout stay in their original stylesheets. */
+.rung__roi b,
+.rung__fee,
+.calc__input,
+.calc__tier,
+.calc__fee,
+#calculator-form input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+#calculator-results .metric dd,
+#calculator-results .breakdown dd,
+#calculator-results table td,
+#calculator-results tbody th,
+#calculator-results .r2r-chart text,
+.example-metric strong,
+.example-fee .fee-amount,
+.appraisal-table td:not(:first-child) {
+  font-family: "Manrope", var(--sans);
+  font-weight: 600;
+  font-variant-numeric: lining-nums tabular-nums;
+}
