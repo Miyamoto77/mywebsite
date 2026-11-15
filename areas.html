@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property area research | Kestrel Sourcing</title>
+<meta name="description" content="Compare house prices, private rents, estimated gross yields and long-term trends across council areas in England and Wales using HM Land Registry and ONS data.">
+<link rel="canonical" href="https://kestrelsourcing.co.uk/areas.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Manrope:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kestrel-tools.css?v=1"><link rel="stylesheet" href="tools-nav.css?v=3"><link rel="stylesheet" href="areas.css?v=1">
+<link rel="icon" type="image/png" href="kestrel-logo.png"><script src="tools-site.js?v=2" defer></script><script src="areas.js?v=1" defer></script>
+</head>
+<body data-calculator=""><a class="skip-link" href="#main">Skip to content</a><header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html#top" aria-label="Kestrel Sourcing home">
+      <img class="brand__mark kestrel-logo" src="kestrel-logo.png" alt="" width="512" height="512" decoding="async">
+      <span>Kestrel<br><small>Property Sourcing</small></span>
+    </a>
+    <nav class="nav__links" id="navlinks" aria-label="Main navigation">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#fees">Our fee</a>
+      <a href="agents.html">For partners</a>
+      <a href="owners.html">For owners</a>
+      <a href="deal-calculators.html">Deal calculators</a>
+      <a href="resources.html">Resources</a>
+      <a class="btn btn--primary nav__cta" href="https://cal.com/kestrelsourcing/15min">Book a free consultation call</a>
+    </nav>
+    <button class="nav__toggle" id="navtoggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<main id="main">
+<section class="area-hero"><div class="wrap">
+<p class="breadcrumb"><a href="index.html">Home</a> / Area research</p>
+<span class="eyebrow">Kestrel research · England &amp; Wales</span>
+<h1 id="hero-title">Property area research</h1>
+<p class="lede" id="hero-description">Compare the local numbers before you shortlist an area. Explore house prices, private rents and estimated gross yields, built from HM Land Registry and ONS data.</p>
+<div class="area-meta"><span>House prices <b id="price-date">Loading…</b></span><span>Private rents <b id="rent-date">Loading…</b></span><a class="area-link" href="#sources">Sources &amp; methodology ↓</a></div>
+</div></section>
+<div class="area-content"><div class="wrap">
+<div id="area-status" class="area-status" role="status">Loading the official property data…</div>
+<noscript><p class="area-note">Enable JavaScript to search and compare areas. You can still use the official raw-data links below.</p></noscript>
+<p id="stale-note" class="area-status" hidden>This snapshot is more than 45 days old. Check the latest releases through the official source links below.</p>
+<div id="browse-view" hidden>
+<div class="atlas">
+<div class="map-panel"><div class="map-head"><h2>Explore the map</h2><label><span class="sr-only">Map measure</span><select id="map-metric" aria-label="Map measure"><option value="yield">Est. gross yield</option><option value="price">Average house price</option><option value="rentGrowth">Rent growth, 1 year</option><option value="priceGrowth5">Price growth, 5 years</option></select></label></div>
+<svg id="area-map" class="area-map" aria-hidden="true"></svg>
+<div class="map-legend"><span id="map-min">Lower</span><span class="legend-scale" aria-hidden="true"></span><span id="map-max">Higher</span><span>Grey: unavailable / filtered</span></div>
+<p class="map-info" id="map-info">Select an area to explore its figures</p><p class="map-caption">ONS boundaries, May 2025. Contains OS data © Crown copyright and database right 2025.</p></div>
+<div class="atlas-copy"><span class="eyebrow">Start with the evidence</span><h2>A local view of the property market.</h2><p>Choose a council on the map or search the directory below. Open any area for its price and rent history, property-type figures and bedroom rents.</p><div class="atlas-counts"><div><strong id="coverage-count">—</strong><span>council areas</span></div><div><strong id="rent-count">—</strong><span>with rent figures</span></div><div><strong>10</strong><span>years of trends</span></div></div><p>Tick up to three areas in the table to compare their figures side by side.</p></div>
+</div>
+<section aria-labelledby="directory-title">
+<div class="area-intro"><div><h2 id="directory-title">Find a council area</h2><p>Search by council name or filter by region. Click a column heading to sort.</p></div><button id="download-areas" class="btn btn--ghost" type="button">Download CSV ↓</button></div>
+<div class="area-filters"><div class="area-field"><label for="area-search">Council name or code</label><input id="area-search" type="search" placeholder="Try Leeds, Southwark or Portsmouth" autocomplete="off"></div><div class="area-field"><label for="region-filter">Region</label><select id="region-filter"><option value="">All regions</option></select></div><button id="reset-filters" class="btn btn--ghost" type="button">Reset</button></div>
+<div class="region-chips" id="region-chips" aria-label="Browse regions"></div>
+<div class="area-intro"><p id="result-count" role="status"></p><p id="compare-status" role="status"></p></div>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Council area data. Scroll horizontally for more columns."><table class="area-table"><caption class="sr-only">Council area prices, rents, growth and estimated gross yields</caption><thead><tr id="area-head"></tr></thead><tbody id="area-rows"></tbody></table></div>
+<div class="table-foot"><label class="page-size">Rows per page <select id="page-size"><option value="25">25</option><option value="50">50</option><option value="500">All</option></select></label><div class="table-pages"><button class="btn btn--ghost" id="previous-page" type="button">Previous</button><span id="page-label"></span><button class="btn btn--ghost" id="next-page" type="button">Next</button></div></div>
+<p class="area-note">Estimated gross yield = average monthly private rent × 12 ÷ average house price × 100. This combines two area averages, with different reference months and property mixes. It is a broad screening measure before fees, finance, tax, maintenance and voids. It does not predict the return on an individual property.</p>
+<section class="compare-panel" id="compare-panel" hidden aria-labelledby="compare-title"><div class="area-intro"><h2 id="compare-title">Your area comparison</h2><button class="btn btn--ghost" id="clear-compare" type="button">Clear comparison</button></div><div class="table-wrap"><table class="area-table compare-table" id="compare-table"></table></div></section>
+</section></div>
+<section id="detail-view" hidden aria-labelledby="detail-name">
+<div class="detail-top"><a class="area-link" href="areas.html">← All council areas</a><button id="download-history" type="button" class="btn btn--ghost">Download monthly figures ↓</button></div>
+<div class="detail-heading"><h2 id="detail-name"></h2><p id="detail-region"></p></div>
+<div class="area-metrics" id="detail-metrics"></div>
+<p class="area-note">Gross yield is an area-level estimate combining the price and rent months shown above, before costs. These averages cover different property populations. Recent figures are provisional and can change.</p>
+<div class="chart-grid" id="detail-charts"></div>
+<div class="breakdown-grid"><section class="area-chart"><h3>By property type</h3><p>House prices and rents use the reference months shown above.</p><div class="table-wrap"><table class="area-table"><thead><tr><th scope="col">Property type</th><th scope="col">Price</th><th scope="col">Monthly rent</th><th scope="col">Est. yield</th></tr></thead><tbody id="type-rows"></tbody></table></div></section><section class="area-chart"><h3>Monthly rent by bedrooms</h3><p>ONS private rent estimates for the latest rent month.</p><div class="table-wrap"><table class="area-table"><thead><tr><th scope="col">Bedrooms</th><th scope="col">Monthly rent</th></tr></thead><tbody id="bedroom-rows"></tbody></table></div></section></div>
+<p class="area-note">Missing or suppressed source values appear as “Unavailable”. <a id="ons-area-link" class="area-link" href="https://www.ons.gov.uk/visualisations/housingpriceslocal/" target="_blank" rel="noopener">Open this area on ONS ↗</a></p>
+</section>
+<section class="area-sources" id="sources" aria-labelledby="sources-title"><h2 id="sources-title">The data behind the figures</h2><p class="area-note">Snapshot prepared <span id="snapshot-date">—</span>. This page uses a downloaded data snapshot, rather than a live feed. Source publishers release data monthly and may revise earlier estimates.</p>
+<div class="source-grid"><div><h3>House prices · HM Land Registry</h3><p>UK House Price Index, all-property and property-type estimates. Reference month: <strong id="price-source-period">—</strong>. England and Wales council areas only.</p><p><a id="hpi-source" href="https://www.gov.uk/government/collections/uk-house-price-index-reports" target="_blank" rel="noopener">Official release</a> · <a id="hpi-download" href="https://www.gov.uk/government/collections/uk-house-price-index-reports" target="_blank" rel="noopener">Download original CSV ↗</a></p></div><div><h3>Private rents · ONS</h3><p>Price Index of Private Rents, monthly price statistics. Reference month: <strong id="rent-source-period">—</strong>. Covers new and existing private tenancies in England and Wales.</p><p><a href="https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/priceindexofprivaterentsukmonthlypricestatistics" target="_blank" rel="noopener">Official dataset</a> · <a id="ons-download" href="https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/priceindexofprivaterentsukmonthlypricestatistics" target="_blank" rel="noopener">Download original XLSX ↗</a></p></div></div>
+<details class="area-method"><summary>How to interpret these figures</summary><p>Prices are mix-adjusted UK HPI estimates based on registered residential sales, rather than asking prices or a simple average of individual transactions. One-year house price and rent growth use the publishers’ annual percentage changes. Five-year house price growth is calculated from the published UK HPI index for the same calendar month five years earlier; the published index is rounded.</p><p>House price and rent data are joined by the exact ONS local authority code. No missing values are estimated. Charts show monthly observations over the latest ten years. Price and rent observations for a month are shown only where that source publishes them.</p><p>Gross yields are calculated by Kestrel, including property-type yields. They combine average annualised rent with average sale price for the same council and broad property type, but are not a matched-property yield calculation. A high area yield alone does not establish that a deal is suitable. Check individual comparables, condition, achievable rent and all costs in the <a class="area-link" href="rental-yield-calculator.html">Rental Yield Calculator</a>.</p><p>Local statistics can fluctuate more than national figures, particularly where transaction numbers are small. Use longer-term trends and the source methodology. Scotland and Northern Ireland are outside this directory’s coverage.</p><p>Contains HM Land Registry and Office for National Statistics data © Crown copyright and database right 2026, used under the <a class="area-link" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank" rel="noopener">Open Government Licence v3.0</a>. Map boundaries: <a class="area-link" href="https://geoportal.statistics.gov.uk/datasets/729ef47ece1d486c883248d71bc3921f_0/about" target="_blank" rel="noopener">ONS Local Authority Districts, May 2025</a>. Contains OS data © Crown copyright and database right 2025. Kestrel’s calculations are independent of the source publishers.</p></details>
+</section>
+<section class="tool-cta"><div><h2>Turn your shortlist into a sourcing brief.</h2><p>Tell us your preferred areas, strategy and investment criteria.</p></div><a class="btn btn--consultation-red" href="index.html#qualify">Join Our Investor Network</a></section>
+</div></div></main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand">
+          <img class="brand__mark kestrel-logo" src="kestrel-logo.png" alt="" width="512" height="512" decoding="async">
+          Kestrel Sourcing
+        </div>
+        <p>Compliance-first property sourcing for UK investors. We find and appraise deals that meet your numbers — with fees payable on exchange (private investors) and on completion (corporate investors).</p>
+        <div class="footer__compliance">
+          <span>Company No. [13365056]</span>
+          <span>ICO Reg. [ZC172725]</span>
+          <span>Redress: PRS [PRS060118]</span>
+          <span>HMRC AML [XBML00000223318]</span>
+          <span>PI Insurance [HIBI5696321XB]</span>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="areas.html">Property area research</a></li>
+          <li><a href="developments.html">Kestrel Developments</a></li>
+          <li><a href="index.html#how">How it works</a></li>
+          <li><a href="index.html#fees">Our fee</a></li>
+          <li><a href="index.html#who">Who we work with</a></li>
+          <li><a href="agents.html">Agents, brokers &amp; introducers</a></li>
+          <li><a href="owners.html">Owners &amp; vendors</a></li>
+          <li><a href="index.html#qualify">Join Our Investor Network</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy notice</a></li>
+          <li><a href="terms.html">Terms of service</a></li>
+          <li><a href="complaints.html">Complaints procedure</a></li>
+          <li><a href="sourcing.html">Sourcing agreement</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer__legal">Kestrel Sourcing provides a property finding service to investors and does not provide financial, investment, tax or legal advice. Projected returns are estimates, not guarantees; the value of property investments can fall as well as rise. Finder's fees are payable on exchange (private investors) and on completion (corporate investors), as defined in your sourcing agreement. Always seek independent professional advice before investing. <em></em></p>
+    <div class="footer__bar">
+      <span>© <span id="year">2026</span> Kestrel Sourcing Ltd. All rights reserved.</span>
+      <span>Made for serious investors.</span>
+    </div>
+    <div class="footer__membership">
+      <img src="prs-logo.jpg" alt="Property Redress Scheme member" width="2048" height="580" loading="lazy" decoding="async">
+    </div>
+  </div>
+</footer></body></html>
