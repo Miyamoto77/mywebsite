@@ -10,6 +10,7 @@ import hashlib
 import html
 import io
 import json
+import math
 import re
 import urllib.parse
 import urllib.request
@@ -38,6 +39,42 @@ def number(value):
 
 def is_local(code):
     return bool(re.fullmatch(r'(E0[6-9]|W06)\d{6}', code))
+
+
+def write_snapshot(result, target):
+    """Promote only complete, non-regressing snapshots; preserve no-op dates."""
+    today = datetime.now(timezone.utc).strftime('%Y-%m')
+    for field in ['priceMonth', 'rentMonth']:
+        datetime.strptime(result[field], '%Y-%m')
+        if result[field] > today:
+            raise ValueError(f'{field} is in the future; existing snapshot preserved')
+    codes = [area['code'] for area in result['areas']]
+    if len(codes) != len(set(codes)):
+        raise ValueError('Duplicate council codes; existing snapshot preserved')
+    for area in result['areas']:
+        if not is_local(area['code']) or not isinstance(area['price'], (int, float)) or not math.isfinite(area['price']) or area['price'] <= 0:
+            raise ValueError('Invalid council or house price; existing snapshot preserved')
+        if area['rent'] is not None and (not isinstance(area['rent'], (int, float)) or not math.isfinite(area['rent']) or area['rent'] <= 0):
+            raise ValueError('Invalid rent; existing snapshot preserved')
+        for kind in ['price', 'rent']:
+            if len(area['history'][kind]) != len(result['months'][kind]):
+                raise ValueError('Incomplete monthly series; existing snapshot preserved')
+    # Reject non-finite values anywhere, before touching the existing file.
+    encoded = json.dumps(result, ensure_ascii=False, separators=(',', ':'), allow_nan=False) + '\n'
+    if target.exists():
+        previous = json.loads(target.read_text())
+        for field in ['priceMonth', 'rentMonth']:
+            if result[field] < previous[field]:
+                raise ValueError(f'{field} is older than the published snapshot; existing snapshot preserved')
+        candidate_content = {k: v for k, v in result.items() if k != 'generatedAt'}
+        previous_content = {k: v for k, v in previous.items() if k != 'generatedAt'}
+        if candidate_content == previous_content:
+            return 'unchanged'
+    target.parent.mkdir(exist_ok=True)
+    temporary = target.with_suffix('.tmp')
+    temporary.write_text(encoded)
+    temporary.replace(target)
+    return 'updated'
 
 
 def build(hpi_bytes, rent_bytes, hpi_url, rent_url, hpi_page):
@@ -125,12 +162,8 @@ def build(hpi_bytes, rent_bytes, hpi_url, rent_url, hpi_page):
                                     'download': rent_url, 'sha256': hashlib.sha256(rent_bytes).hexdigest()}},
               'areas': areas}
     target = ROOT / 'data' / 'areas.json'
-    target.parent.mkdir(exist_ok=True)
-    # Validate fully before replacing the last successful public snapshot.
-    temporary = target.with_suffix('.tmp')
-    temporary.write_text(json.dumps(result, ensure_ascii=False, separators=(',', ':'), allow_nan=False) + '\n')
-    temporary.replace(target)
-    print(json.dumps({'areas': len(areas), 'withRents': sum(a['rent'] is not None for a in areas),
+    status = write_snapshot(result, target)
+    print(json.dumps({'status': status, 'areas': len(areas), 'withRents': sum(a['rent'] is not None for a in areas),
                       'priceMonth': price_month, 'rentMonth': rent_month, 'rentReleaseDate': rent_release}))
 
 
@@ -154,7 +187,8 @@ def main():
         match = re.search(r'href="(https://publicdata.landregistry.gov.uk/[^\"]*UK-HPI-full-file[^\"]*\.csv[^\"]*)"', release_html)
         if not match:
             raise RuntimeError('Cannot resolve the HMLR CSV; existing snapshot preserved')
-        hpi_url = html.unescape(match.group(1))
+        # Remove tracking parameters so an unchanged release stays a no-op.
+        hpi_url = html.unescape(match.group(1)).split('?', 1)[0]
     rent_url = args.rent_url
     if not rent_url:
         ons_html = download(ONS_PAGE).decode()

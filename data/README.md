@@ -4,7 +4,28 @@
 Registry UK HPI CSV and ONS PIPR workbook. Source URLs, SHA-256 hashes, reference
 months and generation time are retained in the JSON. This is a published snapshot,
 not a live API feed. The page displays the snapshot date and flags snapshots older
-than 45 days. No unattended refresh has been configured.
+than 45 days.
+
+## Automatic refresh
+
+The enabled ChatGPT task **Kestrel data refresh** checks for official releases on
+the 28th of every month, around 08:00 Europe/London time, starting 28 November
+2026. Its stable task reference is `Automation_74833f169ca881918754778467e01a3e`.
+Reuse that task when changing this schedule; do not create a duplicate.
+
+Each run fetches a fresh `Miyamoto77/mywebsite` main-branch checkout and runs the
+current script, including its default discovery of the latest official download
+links. Use the bundled Python runtime with openpyxl where available. Run the
+refresh checks with `python -m unittest discover -s tests -p 'test_area_refresh.py'`.
+The task commits only a changed `data/areas.json`, checks the current branch head
+to preserve concurrent edits, waits for GitHub Pages deployment, and verifies the
+live snapshot's months and source hashes. It reports the result in ChatGPT.
+
+Unchanged releases do not reset the snapshot date or create a commit. Same-month
+source revisions are allowed. Older reference months, malformed values,
+incomplete histories and duplicate council codes are rejected before replacing
+the last successful file. Download, authorization, validation or deployment
+failures must be reported and must not be treated as a successful refresh.
 
 To refresh after an official release, use Python 3 with `openpyxl` installed:
 
