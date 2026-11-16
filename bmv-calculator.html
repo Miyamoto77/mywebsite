@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Manrope:wght@600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="kestrel-tools.css?v=1"><link rel="stylesheet" href="tools-nav.css?v=3"><script src="tools-site.js?v=1" defer></script><script src="calculators.js?v=2" defer></script><script src="calculator-ui.js?v=2" defer></script><link rel="icon" type="image/png" sizes="512x512" href="kestrel-logo.png">
 <link rel="stylesheet" href="numeric-typography.css?v=1">
+<link rel="stylesheet" href="site-footer.css?v=1">
 </head>
 <body data-calculator="bmv"><a class="skip-link" href="#main">Skip to content</a><header class="nav">
   <div class="wrap nav__inner">
@@ -33,7 +34,7 @@
 <section class="tool-content"><div class="wrap"><div class="calculator-layout"><div class="inputs-panel"><form id="calculator-form" aria-label="BMV Calculator inputs"><p>Preparing calculator…</p></form><noscript>Enable JavaScript to use this calculator.</noscript></div><section class="results-panel" aria-label="Calculated results"><div class="results-head"><h2>Your results</h2><button id="print-results" class="print-btn" type="button">Print / save PDF</button></div><p id="calculator-error" class="error" role="alert" hidden></p><div id="calculator-results" aria-live="polite"></div></section></div><aside class="explanation"><h2>Purchase tax assumptions</h2><p>Automatic SDLT estimates cover England and Northern Ireland using rates effective from 1 April 2025, checked on 12 October 2026. Residential surcharges, first-time buyer relief and the special corporate rate depend on the selections you make. This tool does not decide whether you qualify for a relief.</p><p>New-lease rent tax, linked transactions, trusts, shared ownership and unusual reliefs are not modelled. For Scotland (LBTT), Wales (LTT), or a transaction outside this scope, obtain the appropriate tax calculation from your adviser. All costs should include any applicable VAT.</p><p>Official sources: <a href="https://www.gov.uk/stamp-duty-land-tax/residential-property-rates" target="_blank" rel="noopener">Residential SDLT</a> · <a href="https://www.gov.uk/stamp-duty-land-tax/nonresidential-and-mixed-rates" target="_blank" rel="noopener">Commercial and mixed-use SDLT</a> · <a href="https://www.gov.uk/guidance/stamp-duty-land-tax-corporate-bodies" target="_blank" rel="noopener">Company purchases</a> · <a href="https://www.gov.uk/guidance/rates-of-stamp-duty-land-tax-for-non-uk-residents" target="_blank" rel="noopener">Non-resident purchases</a>.</p><p>Illustrative estimates only. Valuations, lender terms and your actual tax position require independent checks. Projected returns are estimates, not guarantees.</p></aside><section class="tool-cta"><div><h2>Find a deal that fits your numbers.</h2><p>Tell us your investment criteria. We source and appraise opportunities against your agreed brief.</p></div><a class="btn btn--consultation-red" href="index.html#qualify">Join Our Investor Network</a></section></div></section></main><footer class="footer">
   <div class="wrap">
     <div class="footer__top">
-      <div>
+      <div class="footer__identity">
         <div class="footer__brand">
           <img class="brand__mark kestrel-logo" src="kestrel-logo.png" alt="" width="512" height="512" decoding="async">
           Kestrel Sourcing
@@ -47,10 +48,9 @@
           <span>PI Insurance [HIBI5696321XB]</span>
         </div>
       </div>
-      <div>
+      <div class="footer__column">
         <h4>Explore</h4>
         <ul>
-          <li><a href="areas.html">Property area research</a></li>
           <li><a href="developments.html">Kestrel Developments</a></li>
           <li><a href="index.html#how">How it works</a></li>
           <li><a href="index.html#fees">Our fee</a></li>
@@ -61,13 +61,20 @@
           <li><a href="faq.html">FAQs</a></li>
         </ul>
       </div>
-      <div>
+      <div class="footer__column">
         <h4>Legal</h4>
         <ul>
           <li><a href="privacy.html">Privacy notice</a></li>
           <li><a href="terms.html">Terms of service</a></li>
           <li><a href="complaints.html">Complaints procedure</a></li>
           <li><a href="sourcing.html">Sourcing agreement</a></li>
+        </ul>
+      </div>
+      <div class="footer__column footer__research">
+        <h4>Research</h4>
+        <ul>
+          <li><a href="areas.html">Property area research</a></li>
+          <li><a href="https://postcodescore.co.uk/" target="_blank" rel="noopener noreferrer" aria-label="PostcodeScore (opens in a new tab)">PostcodeScore</a></li>
         </ul>
       </div>
     </div>

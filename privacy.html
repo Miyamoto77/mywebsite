@@ -41,6 +41,7 @@ tr:nth-child(even) td{background:var(--paper-2)}
 @media(max-width:680px){.footer__top{grid-template-columns:1fr;gap:24px}}
 </style><link rel="stylesheet" href="tools-nav.css?v=3">
 <link rel="icon" type="image/png" sizes="512x512" href="kestrel-logo.png">
+<link rel="stylesheet" href="site-footer.css?v=1">
 </head><body>
 <nav class="nav"><div class="nav__in">
 <a class="brand" href="index.html"><img class="brand__mark kestrel-logo" src="kestrel-logo.png" alt="" width="512" height="512" decoding="async"><span>Kestrel Sourcing<small>Property Sourcing</small></span></a>
@@ -98,7 +99,7 @@ tr:nth-child(even) td{background:var(--paper-2)}
 </div></main>
 <footer class="footer">
 <div class="footer__top">
-  <div>
+      <div class="footer__identity">
     <div class="footer__brand"><img class="brand__mark kestrel-logo" src="kestrel-logo.png" alt="" width="512" height="512" decoding="async"> Kestrel Sourcing</div>
     <p>Compliance-first property sourcing for UK investors. We find and appraise deals that meet your numbers — and only earn when one completes.</p>
     <div class="footer__compliance">
@@ -110,20 +111,26 @@ tr:nth-child(even) td{background:var(--paper-2)}
       <span>PI Insurance [HIBI5696321XB]</span>
     </div>
   </div>
-  <div><h4>Explore</h4><ul>
-          <li><a href="areas.html">Property area research</a></li>
+      <div class="footer__column"><h4>Explore</h4><ul>
           <li><a href="developments.html">Kestrel Developments</a></li>
     <li><a href="index.html#how">How it works</a></li>
     <li><a href="sourcing.html">Our sourcing process</a></li>
     <li><a href="index.html#fees">Our fee</a></li>
     <li><a href="index.html#qualify">Register interest</a></li>
   </ul></div>
-  <div><h4>Legal</h4><ul>
+      <div class="footer__column"><h4>Legal</h4><ul>
     <li><a href="privacy.html">Privacy notice</a></li>
     <li><a href="terms.html">Terms &amp; fees</a></li>
     <li><a href="complaints.html">Complaints procedure</a></li>
   </ul></div>
-</div>
+      <div class="footer__column footer__research">
+        <h4>Research</h4>
+        <ul>
+          <li><a href="areas.html">Property area research</a></li>
+          <li><a href="https://postcodescore.co.uk/" target="_blank" rel="noopener noreferrer" aria-label="PostcodeScore (opens in a new tab)">PostcodeScore</a></li>
+        </ul>
+      </div>
+    </div>
 <p class="footer__legal">Kestrel Sourcing is a trading name of DiamondCut Property Ltd. We provide a property finding service and do not provide financial, investment, tax or legal advice. Projected returns are targets, not guarantees; the value of property can fall as well as rise. Always seek independent professional advice before investing.</p>
 <div class="footer__bar"><span>&copy; <span id="year">2026</span> DiamondCut Property Ltd trading as Kestrel Sourcing.</span><span>Made for serious investors.</span></div>
 </footer>

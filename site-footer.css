@@ -1,0 +1,45 @@
+/* Shared footer: company details, then three columns of links. */
+.footer .footer__top {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 32px;
+}
+.footer .footer__identity {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 12px 32px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+.footer .footer__identity > .footer__brand {
+  grid-column: 1;
+  margin-bottom: 0;
+}
+.footer .footer__identity > p {
+  grid-column: 1;
+  max-width: 68ch;
+}
+.footer .footer__identity > .footer__compliance {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  display: grid;
+  gap: 8px;
+  margin-top: 0;
+}
+.footer .footer__column { min-width: 0; }
+.footer .footer__column a { overflow-wrap: anywhere; }
+.footer p.footer__legal { max-width: 100%; }
+.footer .footer__column a:focus-visible {
+  outline: 2px solid #e7c679;
+  outline-offset: 4px;
+}
+@media (max-width: 700px) {
+  .footer .footer__top { grid-template-columns: 1fr; gap: 24px; }
+  .footer .footer__identity { grid-template-columns: 1fr; gap: 12px; }
+  .footer .footer__identity > .footer__compliance {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 4px;
+  }
+}
