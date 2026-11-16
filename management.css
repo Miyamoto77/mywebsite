@@ -1,0 +1,25 @@
+.management-page .dev-hero{padding:54px 0}
+.management-page .dev-hero__grid{gap:52px;grid-template-columns:minmax(0,1.2fr) minmax(0,.85fr)}
+.management-page .dev-hero h1{max-width:16ch;font-size:clamp(2.5rem,5.1vw,3.8rem)}
+.management-page .dev-hero__intro{max-width:39ch;font-size:1.2rem;margin-top:22px}
+.management-page .dev-hero__copy{max-width:52ch}
+.management-page .dev-focus{padding:28px 30px}
+.management-page .dev-focus__logo{width:100px;height:100px;margin-bottom:12px}
+.management-page .dev-focus__brand{font-size:1.8rem;margin-bottom:22px}
+.management-page .dev-focus__brand span{font-size:.75rem}
+.management-page .dev-focus__line{padding:15px 0}
+.management-page .dev-focus__line p{display:grid;gap:4px}
+.management-page .dev-focus__line small{color:#bac9be;font-size:.78rem;font-weight:400}
+.management-page .dev-focus__note{font-size:.91rem;line-height:1.5}
+.management-page .dev-section{padding:44px 0}
+.management-page .dev-section h2{font-size:clamp(1.8rem,3.2vw,2.4rem)}
+.management-page .dev-section__head{max-width:65ch;margin-bottom:26px}
+.management-page .dev-opportunities h3{font-size:1.25rem}
+.management-page .dev-contact{padding:46px 0}
+.management-brief{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:11px;color:#d2dcd4;font-size:.88rem}
+.management-brief li{display:flex;gap:12px;align-items:baseline}
+.management-brief li::before{content:"";width:5px;height:5px;border:1px solid #e7c679;flex:0 0 auto}
+.management-page .dev-contact__action .btn{font-size:.9rem;padding:15px 20px}
+.management-page .footer{padding-top:34px}
+@media(max-width:900px){.management-page .dev-hero__grid{grid-template-columns:1fr;gap:30px}.management-page .dev-focus{max-width:560px}.management-page .dev-hero h1{max-width:22ch}}
+@media(max-width:540px){.management-page .dev-hero,.management-page .dev-section,.management-page .dev-contact{padding:34px 0}.management-page .dev-hero h1{font-size:2.6rem;max-width:15ch}.management-page .dev-hero__intro{font-size:1.12rem}.management-page .dev-focus{padding:24px}.management-page .dev-contact__action .btn{width:100%}}
